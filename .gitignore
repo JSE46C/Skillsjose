@@ -4,3 +4,4 @@ __pycache__/
 scripts/*/
 collected/
 .env
+figuras/*/shots/
