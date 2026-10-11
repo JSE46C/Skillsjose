@@ -32,6 +32,7 @@ grep -v '^#' "$LOCK" | while read -r name repo commit path; do
   rm -rf "${DEST:?}/$name"
   mkdir -p "$DEST/$name"
   cp -R "$src/$path/." "$DEST/$name/"
+  rm -rf "$DEST/$name/.git"   # skills que viven en la raíz del repo upstream
   printf '%-25s %-35s %-9s %s\n' "$name" "$repo" "$commit" "$path" >> "$NEW_LOCK"
   echo "ok  $name  ($repo@$commit)"
 done

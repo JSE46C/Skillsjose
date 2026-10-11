@@ -7,6 +7,7 @@ Las carpetas de `.claude/skills/` listadas aquí son copias sin modificar de sus
 | `.claude/skills/ppt-master` | https://github.com/hugohe3/ppt-master | Hugo He | MIT (incluida en la carpeta; no eliminar `LICENSE`, `SPONSORS*.md`: la skill comprueba su integridad) |
 | `.claude/skills/diagram-design` | https://github.com/cathrynlavery/diagram-design | Cathryn Lavery | MIT |
 | `.claude/skills/karpathy-guidelines` | https://github.com/multica-ai/andrej-karpathy-skills | Forrest Chang | MIT |
+| `.claude/skills/anatomy` | https://github.com/wheresryan22/anatomy | Ryan (wheresryan22) | MIT |
 | `.claude/skills/reverse-engineer-anything` | https://github.com/morluto/rea | morluto | MIT |
 
 Herramientas usadas pero no copiadas en este repo:

@@ -8,6 +8,7 @@ Repositorio de skills para Claude Code. Al abrir este repo (en local o en una se
 |---|---|---|---|---|
 | **ppt-master** ([hugohe3/ppt-master](https://github.com/hugohe3/ppt-master)) | PDF/Word/Excel → PowerPoint editable de verdad (formas nativas, gráficos, animaciones). Presentaciones para dirección, clientes y subvenciones. | Skill | ✅ Incorporada: `.claude/skills/ppt-master` | Alta |
 | **diagram-design** ([cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design)) | Diagramas con la marca del grupo: procesos, swimlanes, organigramas, flujos de datos, Gantt, cascadas, Sankey. 44 tipos, HTML/SVG/PNG. | Skill | ✅ Incorporada: `.claude/skills/diagram-design` | Alta |
+| **anatomy** ([wheresryan22/anatomy](https://github.com/wheresryan22/anatomy)) | Figuras isométricas interactivas (SVG/WebGL) que explican un concepto como una máquina real: cómo funciona un equipo, un proceso o un sistema, para web, fichas técnicas, formación o presentaciones. | Skill + kit Node | ✅ Incorporada: `.claude/skills/anatomy` | Media |
 | **api-desde-app** (skill propia sobre [kalil0321/reverse-api-engineer](https://github.com/kalil0321/reverse-api-engineer)) | Sacar una API de nuestras apps web sin API (ERP, portal de alquiler, telemetría) para alimentar Power BI, Make o automatizaciones. | Skill + CLI Python | ✅ Incorporada: `.claude/skills/api-desde-app` (el CLI se instala aparte) | Alta |
 | **karpathy-guidelines** ([multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)) | 4 reglas para que Claude programe mejor: pensar antes, simplicidad, cambios quirúrgicos, objetivos verificables. Menos retrabajo en scripts, DAX y automatizaciones. | Skill | ✅ Incorporada: `.claude/skills/karpathy-guidelines` | Media |
 | **REA** ([morluto/rea](https://github.com/morluto/rea)) | Entender cómo funciona por dentro una aplicación instalada (escritorio, Electron, .NET, web) sin su código. Útil con software heredado o de proveedor del que dependemos. | Skill + servidor MCP | ✅ Incorporada: `.claude/skills/reverse-engineer-anything` + `.mcp.json` | Media |
@@ -22,6 +23,7 @@ Basta con pedirlo en lenguaje natural dentro de una sesión de Claude Code sobre
 
 - *"Hazme una presentación para el comité de dirección a partir de este PDF de resultados del Q3"* → ppt-master
 - *"Dibuja el proceso de alquiler: reserva → entrega → parte de trabajo → devolución → facturación, en swimlanes por departamento"* → diagram-design
+- *"Haz una figura interactiva que explique cómo funciona el sistema hidráulico de una plataforma elevadora"* → anatomy
 - *"Quiero sacar por API el listado de máquinas en obra de nuestro portal de alquiler para meterlo en Power BI"* → api-desde-app
 - *"Explícame cómo calcula los precios la app de escritorio del proveedor X"* → REA
 
@@ -31,6 +33,7 @@ Basta con pedirlo en lenguaje natural dentro de una sesión de Claude Code sobre
 |---|---|---|
 | ppt-master | Python 3.10+ y sus dependencias | `pip install -r .claude/skills/ppt-master/requirements.txt` |
 | diagram-design | Nada para HTML/SVG; navegador para exportar PNG | — |
+| anatomy | Node.js ≥ 20.10 (sin dependencias). Chrome/Chromium para capturas y verificación | — |
 | api-desde-app | CLI + `ANTHROPIC_API_KEY` | `uv tool install "reverse-api-engineer[manual]"` y `playwright install chromium` |
 | REA | Node.js ≥ 22.19 (se lanza solo vía `npx`). Para binarios nativos: Ghidra, Hopper o IDA | Claude Code pedirá aprobar el servidor MCP `rea` la primera vez |
 | claude-mem | Claude Code en tu equipo | En Claude Code: `/plugin marketplace add thedotmack/claude-mem` y `/plugin install claude-mem` |
