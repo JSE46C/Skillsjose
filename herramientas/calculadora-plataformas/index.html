@@ -24,12 +24,13 @@ header .tag{background:var(--navy);color:#fff;border-radius:10px;padding:8px 14p
 .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .panel>h2{margin:0;background:var(--orange);color:#fff;font-size:15px;font-weight:700;padding:12px 18px;display:flex;align-items:center;gap:10px;letter-spacing:.01em}
 .panel>h2 .n{background:rgba(0,0,0,.18);border-radius:8px;padding:2px 8px;font-size:13px}
-.panel>h2 .right{margin-left:auto;font-weight:500;font-size:12px;opacity:.95}
+.panel>h2 .right{margin-left:auto;font-weight:500;font-size:12px;opacity:.95;text-align:right}
 .body{padding:16px 18px}
-.field{margin-bottom:16px}
-.field label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted)}
+.field{margin-bottom:14px}
+.field>label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted)}
 .field label output{font-size:24px;font-weight:800;color:var(--orange);font-variant-numeric:tabular-nums}
 .field label output small{font-size:14px;margin-left:2px}
+.sub{font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 8px;padding-top:12px;border-top:1px solid var(--line)}
 input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 .hint{font-size:12px;color:var(--muted);margin-top:2px}
 .obs{border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
@@ -44,8 +45,8 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 .switch span:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
 .switch input:checked+span{background:var(--navy)}
 .switch input:checked+span:before{transform:translateX(20px)}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
 .chip[aria-pressed=true]{background:var(--navy);border-color:var(--navy);color:#fff}
 .notice{background:var(--warn-soft);border:1px solid #f1d9a6;color:#7a5a12;border-radius:10px;padding:10px 12px;font-size:12px;margin-top:14px}
 /* diagrama */
@@ -54,13 +55,15 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 .badge.ok{background:var(--ok-soft);color:var(--ok)}
 .badge.bad{background:var(--bad-soft);color:var(--bad)}
 .badge.warn{background:var(--warn-soft);color:var(--warn)}
+.badge.ideal{background:var(--orange);color:#fff}
+.badge.est{background:#eef1f4;color:var(--muted);font-weight:600;font-size:11px}
 .verdict .name{font-weight:800;color:var(--navy)}
 .verdict .why{color:var(--muted);font-size:13px}
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}
-.kpi{padding:10px 14px;border-right:1px solid var(--line)}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);border-bottom:1px solid var(--line)}
+.kpi{padding:10px 12px;border-right:1px solid var(--line)}
 .kpi:last-child{border-right:0}
 .kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.kpi .v{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--navy)}
+.kpi .v{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--navy)}
 .kpi .v.ok{color:var(--ok)}.kpi .v.bad{color:var(--bad)}
 .kpi .s{font-size:12px;color:var(--muted)}
 .views{display:grid;grid-template-columns:1fr 220px}
@@ -73,25 +76,41 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 .plan .s{font-size:12px;color:var(--muted)}
 .legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 .legend i{display:inline-block;width:14px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+/* comparativa por tipo */
+.types{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:16px 18px}
+.type{border:1.5px solid var(--line);border-radius:12px;padding:12px;background:#fff;display:flex;flex-direction:column;gap:8px;cursor:pointer;text-align:left;font:inherit;color:inherit;position:relative}
+.type:hover{border-color:var(--orange-line)}
+.type.win{border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-soft)}
+.type h4{margin:0;font-size:15px;color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:6px}
+.type .m{font-size:13px;font-weight:700;min-height:36px;line-height:1.35}
+.type .m small{display:block;font-weight:400;color:var(--muted)}
+.type ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;font-size:12px}
+.type li{display:flex;gap:5px;align-items:center;white-space:nowrap}
+.type li b{width:14px;height:14px;border-radius:50%;display:inline-grid;place-items:center;font-size:10px;color:#fff;flex:none}
+.type li.y b{background:var(--ok)}.type li.n b{background:var(--bad)}
+.type li.n{color:var(--bad)}
+.type .when{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+.rule{padding:0 18px 14px;font-size:12px;color:var(--muted)}
 /* flota */
 .fleet{margin-top:16px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px;padding:16px 18px}
 .card{border:1.5px solid var(--line);border-radius:12px;padding:10px;background:#fff;cursor:pointer;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column;gap:6px;position:relative;transition:border-color .15s,box-shadow .15s}
 .card:hover{border-color:var(--orange-line)}
 .card[aria-pressed=true]{border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-soft)}
-.card.dim{opacity:.55}
+.card.dim{opacity:.5}
 .card .thumb{background:#fafbfc;border-radius:8px;border:1px solid var(--grid)}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--orange);font-weight:700}
 .card .t{font-weight:700;font-size:13px;line-height:1.3;color:var(--navy);min-height:34px}
 .card .specs{display:flex;gap:8px;white-space:nowrap;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .card .specs b{color:var(--ink)}
 .card .st{position:absolute;top:8px;right:8px}
 .card .st .badge{font-size:11px;padding:3px 7px}
-.card a{font-size:12px;color:var(--navy)}
 .actions{display:flex;gap:10px;padding:0 18px 16px}
-.btn{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}
 .btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
-@media (max-width:640px){header{flex-direction:column;align-items:flex-start}header .tag{font-size:13px}.brand{flex-wrap:wrap}}
-@media (max-width:980px){.grid{grid-template-columns:1fr}.views{grid-template-columns:1fr}.side{border-right:0;border-bottom:1px solid var(--line)}.kpis{grid-template-columns:repeat(2,1fr)}.kpi{border-bottom:1px solid var(--line)}}
+@media (max-width:1100px){.types{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.kpi{border-bottom:1px solid var(--line)}}
+@media (max-width:980px){.grid{grid-template-columns:1fr}.views{grid-template-columns:1fr}.side{border-right:0;border-bottom:1px solid var(--line)}}
+@media (max-width:640px){header{flex-direction:column;align-items:flex-start}header .tag{font-size:13px}.brand{flex-wrap:wrap}.types{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
 @media print{body{background:#fff}.wrap{padding:0}.grid{grid-template-columns:1fr}.actions,.chips,input[type=range],.switch{display:none}.panel{break-inside:avoid;border-color:#ccc}.cards{grid-template-columns:repeat(4,1fr)}.card.dim{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -110,28 +129,37 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
       <div class="body">
         <div class="field">
           <label for="h">H · Altura de trabajo <output id="hv"></output></label>
-          <input id="h" type="range" min="4" max="43" step="0.5" value="12">
-          <div class="hint">Altura de las manos del operario: suelo de cesta + 2 m.</div>
+          <input id="h" type="range" min="4" max="43" step="0.5" value="10">
+          <div class="hint">Altura de las manos del operario: suelo de plataforma + 2 m.</div>
         </div>
         <div class="field">
           <label for="d">D · Distancia horizontal <output id="dv"></output></label>
-          <input id="d" type="range" min="0" max="25" step="0.5" value="6">
-          <div class="hint">Desde el eje de giro de la máquina hasta el punto de trabajo.</div>
+          <input id="d" type="range" min="0" max="25" step="0.5" value="1">
+          <div class="hint">Desde el centro de la máquina (eje de giro en las de brazo) hasta el punto de trabajo.</div>
         </div>
         <div class="field">
           <label for="a">A · Anchura de paso disponible <output id="av"></output></label>
-          <input id="a" type="range" min="1" max="5" step="0.05" value="2.5">
+          <input id="a" type="range" min="0.7" max="5" step="0.05" value="2.5">
+          <div class="hint">Se compara con el ancho de trabajo (con estabilizadores si los lleva).</div>
         </div>
         <div class="field">
-          <label>Energía</label>
-          <div class="chips" role="group" aria-label="Filtro de energía">
-            <button class="chip" data-energy="all" aria-pressed="true">Todas</button>
-            <button class="chip" data-energy="e" aria-pressed="false">Eléctrica</button>
-            <button class="chip" data-energy="d" aria-pressed="false">Diésel</button>
-          </div>
+          <label for="c">Carga en plataforma <output id="cv"></output></label>
+          <input id="c" type="range" min="80" max="750" step="10" value="200">
+          <div class="hint">Personas (80 kg c/u) + herramientas + material.</div>
         </div>
-        <div class="obs" id="o1">
-          <div class="row">Obstáculo 1 <label class="switch"><input type="checkbox" id="o1on" checked><span></span></label></div>
+
+        <div class="sub">Condiciones</div>
+        <div class="field"><label>Ubicación</label>
+          <div class="chips" data-group="loc"><button class="chip" data-v="ext" aria-pressed="true">Exterior</button><button class="chip" data-v="int" aria-pressed="false">Interior (sin humos)</button></div></div>
+        <div class="field"><label>Terreno</label>
+          <div class="chips" data-group="terrain"><button class="chip" data-v="firme" aria-pressed="true">Firme y nivelado</button><button class="chip" data-v="obra" aria-pressed="false">Obra / irregular</button></div></div>
+        <div class="field"><label>Puntos de trabajo</label>
+          <div class="chips" data-group="points"><button class="chip" data-v="1" aria-pressed="true">Uno</button><button class="chip" data-v="n" aria-pressed="false">Varios en vía pública</button></div></div>
+        <div class="field"><label>Tipo de máquina</label>
+          <div class="chips" data-group="type"><button class="chip" data-v="all" aria-pressed="true">Todos</button><button class="chip" data-v="tijera" aria-pressed="false">Tijera</button><button class="chip" data-v="mastil" aria-pressed="false">Mástil</button><button class="chip" data-v="articulada" aria-pressed="false">Articulada</button><button class="chip" data-v="telescopica" aria-pressed="false">Telescópica</button><button class="chip" data-v="camion" aria-pressed="false">Camión</button></div></div>
+
+        <div class="obs off" id="o1">
+          <div class="row">Obstáculo 1 <label class="switch"><input type="checkbox" id="o1on"><span></span></label></div>
           <div class="pair">
             <div><label for="o1h">Altura (m)</label><input id="o1h" type="number" min="0.5" max="40" step="0.5" value="6"></div>
             <div><label for="o1d">Distancia (m)</label><input id="o1d" type="number" min="0.5" max="24" step="0.5" value="3"></div>
@@ -144,7 +172,7 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
             <div><label for="o2d">Distancia (m)</label><input id="o2d" type="number" min="0.5" max="24" step="0.5" value="1.5"></div>
           </div>
         </div>
-        <div class="notice"><b>Aviso:</b> estimación orientativa a partir de la altura y el alcance de catálogo; la envolvente real depende del fabricante y de la carga en cesta. Verificar: (1) combustión permitida, (2) ancho de paso, (3) carga máxima sobre el suelo y (4) inclinación del terreno. Mainsa no se responsabiliza del uso inadecuado.</div>
+        <div class="notice"><b>Aviso:</b> estimación orientativa. Las envolventes se calculan con un modelo a partir de la altura y el alcance de catálogo; los datos marcados como <i>estimado</i> son valores típicos del mercado pendientes de confirmar con la ficha. Verificar: (1) combustión permitida, (2) ancho de paso, (3) carga máxima sobre el suelo y (4) inclinación del terreno. Mainsa no se responsabiliza del uso inadecuado.</div>
       </div>
     </section>
 
@@ -160,94 +188,171 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
         </div>
         <div class="plan">
           <h3>Planta · paso disponible</h3>
-          <svg id="plan" viewBox="0 0 200 240" role="img" aria-label="Vista en planta del ancho de paso frente al ancho de la máquina"></svg>
+          <svg id="plan" viewBox="0 0 200 240" role="img" aria-label="Vista en planta del ancho de paso frente al ancho de trabajo de la máquina"></svg>
           <div class="s" id="plantext"></div>
         </div>
       </div>
       <div class="legend">
-        <span><i style="background:var(--orange-soft);border:1px solid var(--orange-line)"></i>Envolvente de trabajo (suelo de cesta)</span>
+        <span><i style="background:var(--orange-soft);border:1px solid var(--orange-line)"></i>Zona de trabajo (suelo de plataforma)</span>
         <span><i style="background:var(--ok)"></i>Objetivo alcanzable</span>
-        <span><i style="background:var(--bad)"></i>Objetivo fuera de alcance</span>
+        <span><i style="background:var(--bad)"></i>Fuera de alcance</span>
         <span><i style="background:var(--navy)"></i>Obstáculo (margen 0,5 m)</span>
         <span>Arrastra en el diagrama para mover el objetivo</span>
       </div>
     </section>
   </div>
 
-  <!-- 03 flota -->
+  <!-- 03 comparativa por tipo -->
   <section class="panel fleet" aria-labelledby="p3">
-    <h2 id="p3"><span class="n">03</span>Flota Mainsa compatible<span class="right" id="count"></span></h2>
+    <h2 id="p3"><span class="n">03</span>Comparativa por tipo de máquina<span class="right" id="winner"></span></h2>
+    <div class="types" id="types"></div>
+    <div class="rule" id="rule"></div>
+  </section>
+
+  <!-- 04 flota -->
+  <section class="panel fleet" aria-labelledby="p4">
+    <h2 id="p4"><span class="n">04</span>Flota Mainsa<span class="right" id="count"></span></h2>
     <div class="cards" id="cards"></div>
     <div class="actions"><button class="btn" id="print">Descargar informe PDF</button><a class="btn ghost" id="ficha" href="#" target="_blank" rel="noopener">Ver ficha de la máquina</a></div>
   </section>
 </div>
 
 <script>
-// ─── Flota (altura de trabajo, alcance horizontal, anchura, energía, chasis) ───
+// ─── Flota ───────────────────────────────────────────────────────────────────
+// H altura de trabajo (m) · R alcance horizontal máx. (m) · W ancho de transporte · Wop ancho de trabajo (con estabilizadores)
+// cap carga en plataforma (kg) · energy e/d/de · terrain firme|todo · est: datos técnicos típicos pendientes de confirmar
 const CAT = "https://grupomainsa.es/catalogo/mainsa-plataformas/";
+const PE = CAT + "plataformas-elevadoras/";
+const TIJ = PE + "plataformas-elevadoras-tijeras/";
+const sc = (id, name, H, W, deck, ext, cap, energy, terrain) => ({ id, type: "tijera", name, H, W, deck, ext, R: deck[0] / 2 + ext, cap, energy, terrain, base: "tijera", url: TIJ, est: true });
 const FLEET = [
-  { id: "oruga15", name: "Plat. oruga brazo articulado diésel/eléct. 15 m", H: 15, R: 7.5, W: 2.3, energy: "de", base: "oruga", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-oruga/plataforma-elevadora-de-oruga-raptor-15s" },
-  { id: "e15", name: "Plataforma brazo articulado eléctrica 15 m", H: 15, R: 7.6, W: 1.5, energy: "e", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-electricas-15-m" },
-  { id: "e16", name: "Plat. brazo articulado eléctrica 16 m", H: 16, R: 7.6, W: 1.75, energy: "e", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-diesel-16m" },
-  { id: "d16", name: "Plataforma brazo articulado diésel 16 m", H: 16, R: 9.2, W: 2.3, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/plataforma-articuladas-diesel-16m-haulotte-ha-16-px" },
-  { id: "d18", name: "Plataforma brazo articulado diésel 18 m", H: 18, R: 11, W: 2.3, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/plataforma-articuladas-diesel-18m-ha16-rtjpro" },
-  { id: "d20", name: "Plat. brazo articulado diésel 20 m", H: 20, R: 11, W: 2.3, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-diesel-18m" },
-  { id: "e20", name: "Plataforma brazo articulado eléctrica 20 m", H: 20, R: 9.9, W: 1.75, energy: "e", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-electricas-20-m" },
-  { id: "c20", name: "Camión plataforma articulada diésel 20 m", H: 20, R: 11, W: 2.1, energy: "d", base: "camion", url: CAT + "camiones-plataformas/camion-plataforma-articulado" },
-  { id: "c24", name: "Camión plataforma articulada diésel 24 m", H: 24, R: 13, W: 2.1, energy: "d", base: "camion", url: CAT + "camiones-plataformas/camion-plataforma-articulado-diesel-24m" },
-  { id: "d26", name: "Plat. brazo articulado diésel 26 m", H: 26, R: 15.6, W: 2.3, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-diesel-26m" },
-  { id: "d28", name: "Plat. brazo articulado diésel/eléct. 28 m", H: 28, R: 17.6, W: 2.3, energy: "de", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-telescopicas-28m" },
-  { id: "d32", name: "Plataforma brazo articulado diésel 32 m", H: 32, R: 20.8, W: 2.49, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-diesel-32m" },
-  { id: "d40", name: "Plat. brazo articulado diésel 40 m", H: 40, R: 22, W: 4, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/plataforma-articulada-diesel-40m" },
-  { id: "d41", name: "Plataforma brazo articulado diésel 41 m", H: 41, R: 22.5, W: 4, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-diesel-41m" },
-  { id: "d43", name: "Plataforma brazo articulado diésel 43 m", H: 43, R: 24.4, W: 4, energy: "d", base: "ruedas", url: CAT + "plataformas-elevadoras/plataformas-elevadoras-articuladas/articuladas-diesel-43m" },
+  // Tijeras (catálogo: alturas; dimensiones y carga típicas)
+  sc("t6e", "Tijera eléctrica 6 m", 6, 0.76, [1.6, 0.7], 0.6, 230, "e", "firme"),
+  sc("t8e", "Tijera eléctrica 8 m", 8, 0.81, [2.3, 0.8], 0.9, 230, "e", "firme"),
+  sc("t10ec", "Tijera compacta eléctrica 10 m", 10, 0.81, [2.3, 0.8], 0.9, 230, "e", "firme"),
+  sc("t10e", "Tijera eléctrica 10 m", 10, 1.17, [2.3, 1.1], 0.9, 450, "e", "firme"),
+  sc("t12ec", "Tijera compacta eléctrica 12 m", 12, 0.81, [2.3, 0.8], 0.9, 230, "e", "firme"),
+  sc("t12e", "Tijera eléctrica 12 m", 12, 1.17, [2.6, 1.1], 0.9, 320, "e", "firme"),
+  sc("t14ec", "Tijera compacta eléctrica 14 m", 14, 1.17, [2.6, 1.1], 0.9, 230, "e", "firme"),
+  sc("t14e", "Tijera eléctrica 14 m", 14, 1.4, [2.6, 1.2], 1.0, 350, "e", "firme"),
+  sc("t15e", "Tijera eléctrica 15 m", 15, 1.4, [2.6, 1.2], 1.0, 350, "e", "firme"),
+  sc("t18e", "Tijera eléctrica 18 m", 18, 2.3, [4.0, 1.7], 1.5, 500, "e", "firme"),
+  sc("t12d", "Tijera diésel 12 m", 12, 1.75, [3.7, 1.6], 1.5, 500, "d", "todo"),
+  sc("t12tt", "Tijera todoterreno diésel 12 m", 12, 2.3, [4.0, 1.8], 1.5, 750, "d", "todo"),
+  sc("t14d", "Tijera diésel 14 m", 14, 2.3, [4.0, 1.8], 1.5, 700, "d", "todo"),
+  sc("t15tt", "Tijera todoterreno diésel 15 m", 15, 2.3, [4.6, 1.8], 1.5, 600, "d", "todo"),
+  sc("t15d", "Tijera diésel 15 m", 15, 2.3, [4.0, 1.8], 1.5, 600, "d", "todo"),
+  sc("t18tt", "Tijera todoterreno diésel 18 m", 18, 2.3, [4.6, 1.8], 1.5, 500, "d", "todo"),
+  sc("t18d", "Tijera diésel 18 m", 18, 2.5, [4.6, 1.8], 1.5, 500, "d", "todo"),
+  // Mástil vertical con plumín (alturas de catálogo; alcance y anchura típicos)
+  { id: "m10", type: "mastil", boom: "mast", base: "mastil", name: "Mástil vertical 10 m", H: 10, R: 3, W: 0.99, cap: 200, energy: "e", terrain: "firme", url: PE + "plataformas-elevadoras-mastil-vertical/mastil-vertical/", est: true },
+  { id: "m10t", type: "mastil", boom: "mast", base: "mastil", name: "Mástil vertical 10 m Toucan", H: 10, R: 3, W: 1.2, cap: 200, energy: "e", terrain: "firme", url: PE + "mastil-vertical-10-m-toucan/", est: true },
+  // Articuladas (datos de la calculadora actual)
+  { id: "oruga15", type: "articulada", boom: "art", base: "oruga", name: "Articulada oruga diésel/eléct. 15 m", H: 15, R: 7.5, W: 2.3, Wop: 3.3, cap: 200, energy: "de", terrain: "todo", url: PE + "plataformas-elevadoras-oruga/plataforma-elevadora-de-oruga-raptor-15s" },
+  { id: "e15", type: "articulada", boom: "art", base: "ruedas", name: "Articulada eléctrica 15 m", H: 15, R: 7.6, W: 1.5, cap: 200, energy: "e", terrain: "firme", url: PE + "plataformas-elevadoras-articuladas/articuladas-electricas-15-m" },
+  { id: "e16", type: "articulada", boom: "art", base: "ruedas", name: "Articulada eléctrica 16 m", H: 16, R: 7.6, W: 1.75, cap: 200, energy: "e", terrain: "firme", url: PE + "plataformas-elevadoras-articuladas/articuladas-diesel-16m" },
+  { id: "d16", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 16 m", H: 16, R: 9.2, W: 2.3, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/plataforma-articuladas-diesel-16m-haulotte-ha-16-px" },
+  { id: "d18", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 18 m", H: 18, R: 11, W: 2.3, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/plataforma-articuladas-diesel-18m-ha16-rtjpro" },
+  { id: "d20", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 20 m", H: 20, R: 11, W: 2.3, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/articuladas-diesel-18m" },
+  { id: "e20", type: "articulada", boom: "art", base: "ruedas", name: "Articulada eléctrica 20 m", H: 20, R: 9.9, W: 1.75, cap: 230, energy: "e", terrain: "firme", url: PE + "plataformas-elevadoras-articuladas/articuladas-electricas-20-m" },
+  { id: "d26", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 26 m", H: 26, R: 15.6, W: 2.3, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/articuladas-diesel-26m" },
+  { id: "d28", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel/eléct. 28 m", H: 28, R: 17.6, W: 2.3, cap: 230, energy: "de", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/articuladas-telescopicas-28m" },
+  { id: "d32", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 32 m", H: 32, R: 20.8, W: 2.49, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/articuladas-diesel-32m" },
+  { id: "d40", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 40 m", H: 40, R: 22, W: 4, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/plataforma-articulada-diesel-40m" },
+  { id: "d41", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 41 m", H: 41, R: 22.5, W: 4, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/articuladas-diesel-41m" },
+  { id: "d43", type: "articulada", boom: "art", base: "ruedas", name: "Articulada diésel 43 m", H: 43, R: 24.4, W: 4, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-articuladas/articuladas-diesel-43m" },
+  // Telescópicas (alturas de catálogo; alcance, anchura y carga típicos)
+  { id: "tel16", type: "telescopica", boom: "tel", base: "ruedas", name: "Telescópica diésel 16 m", H: 16, R: 12.2, W: 2.3, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-telescopicas/articuladas-telescopicas/", est: true },
+  { id: "tel21", type: "telescopica", boom: "tel", base: "ruedas", name: "Telescópica diésel 21 m", H: 21, R: 17.1, W: 2.4, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-telescopicas/articuladas-telescopicas-21m/", est: true },
+  { id: "tel22", type: "telescopica", boom: "tel", base: "ruedas", name: "Telescópica diésel 22 m", H: 22, R: 17.5, W: 2.4, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-telescopicas/articuladas-telescopicas-22m/", est: true },
+  { id: "tel23", type: "telescopica", boom: "tel", base: "ruedas", name: "Telescópica diésel 23 m", H: 23, R: 17.8, W: 2.48, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-telescopicas/articuladas-telescopicas-23m/", est: true },
+  { id: "tel25", type: "telescopica", boom: "tel", base: "ruedas", name: "Telescópica diésel 25 m", H: 25, R: 21, W: 2.5, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-telescopicas/articuladas-telescopicas-25m/", est: true },
+  { id: "tel38", type: "telescopica", boom: "tel", base: "ruedas", name: "Telescópica diésel 38 m", H: 38, R: 23, W: 2.5, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-telescopicas/articuladas-telescopicas-38m/", est: true },
+  { id: "tel40", type: "telescopica", boom: "tel", base: "ruedas", name: "Telescópica diésel 40 m", H: 40, R: 24, W: 2.5, cap: 230, energy: "d", terrain: "todo", url: PE + "plataformas-elevadoras-telescopicas/articuladas-telescopicas-40m/", est: true },
+  // Camiones plataforma (articulados: datos de la calculadora actual; telescópicos: típicos)
+  { id: "ct15", type: "camion", boom: "tel", base: "camion", name: "Camión plataforma telescópico 15 m", H: 15, R: 10, W: 2.1, Wop: 2.6, cap: 200, energy: "d", terrain: "firme", url: CAT + "camiones-plataformas/camion-plataforma-telescopico/", est: true },
+  { id: "ct18", type: "camion", boom: "tel", base: "camion", name: "Camión plataforma telescópico 18 m", H: 18, R: 12, W: 2.1, Wop: 2.6, cap: 200, energy: "d", terrain: "firme", url: CAT + "camiones-plataformas/camion-plataforma-telescopica-diesel-18m/", est: true },
+  { id: "c20", type: "camion", boom: "art", base: "camion", name: "Camión plataforma articulado 20 m", H: 20, R: 11, W: 2.1, Wop: 2.6, cap: 200, energy: "d", terrain: "firme", url: CAT + "camiones-plataformas/camion-plataforma-articulado" },
+  { id: "c24", type: "camion", boom: "art", base: "camion", name: "Camión plataforma articulado 24 m", H: 24, R: 13, W: 2.1, Wop: 2.6, cap: 200, energy: "d", terrain: "firme", url: CAT + "camiones-plataformas/camion-plataforma-articulado-diesel-24m" },
 ];
+const TYPES = {
+  tijera: { name: "Tijera", order: 1, when: "Trabajo en vertical sobre la máquina: la más económica, con más superficie y carga en plataforma. Solo alcanza en horizontal lo que da su extensión." },
+  mastil: { name: "Mástil vertical", order: 2, when: "Interiores estrechos y suelos delicados: muy compacta y ligera, con plumín corto para salvar algo de altura." },
+  articulada: { name: "Articulada", order: 3, when: "Pasar por encima de obstáculos y llegar a zonas de difícil acceso. Menos carga en cesta que una tijera." },
+  telescopica: { name: "Telescópica", order: 3, when: "Máximo alcance horizontal y altura con la máquina lejos del punto, sin obstáculos cerca de la base." },
+  camion: { name: "Camión plataforma", order: 4, when: "Varios puntos en vía pública: va por carretera sin góndola y monta rápido. Necesita firme y espacio para estabilizadores." },
+};
 
-// ─── Modelo cinemático aproximado de una articulada ───
-// Torreta en (0, z0). Pluma inferior (pantógrafo) eleva la articulación P1 hasta Lr.
-// Pluma superior telescópica de Lmin a Lmax, ángulo −15°…80°. Plumín Lj, −70°…70°. Cesta nivelada de fondo bw.
-// Ajuste: alcance máximo = Lmax + Lj + bw (todo horizontal); altura máx. de suelo de cesta = H − 2.
+// ─── Modelos cinemáticos aproximados ─────────────────────────────────────────
 const DEG = Math.PI / 180;
 const SAFE = 0.5; // margen a obstáculos (m)
 const OBS_T = 0.3; // espesor del obstáculo (m)
+const PERSON = 80; // kg
+
 function modelOf(m) {
-  const big = m.H >= 26;
-  const z0 = m.base === "camion" ? 2.6 : m.base === "oruga" ? 1.3 : big ? 2.0 : 1.6;
-  const Lj = big ? 1.8 : 1.3;
-  const bw = big ? 1.8 : 1.2;
-  const Lmax = m.R - Lj - bw;
   const Hp = m.H - 2;
-  const Lr = Math.max(1, Hp + 0.25 - z0 - Lmax * Math.sin(80 * DEG) - Lj * Math.sin(70 * DEG));
-  return { ...m, z0, Lj, bw, Lmax, Lmin: Math.max(3, Lmax * 0.45), Lr, Hp, aMin: -15 * DEG, aMax: 80 * DEG, jMin: -70 * DEG, jMax: 70 * DEG };
+  if (m.type === "tijera") {
+    const [Ld, Wd] = m.deck;
+    return { ...m, Hp, Ld, Wd, zMin: 1.1, z0: 0.9, Wop: m.Wop || m.W };
+  }
+  const truck = m.base === "camion";
+  const big = m.H >= 26;
+  const z0 = truck ? 2.6 : m.base === "oruga" ? 1.3 : m.base === "mastil" ? 1.0 : big ? 2.0 : 1.6;
+  const M = { ...m, Hp, z0, Wop: m.Wop || m.W };
+  if (m.boom === "mast") {
+    // mástil vertical que eleva un plumín pendular de longitud fija
+    const bw = 0.7, L = m.R - bw;
+    Object.assign(M, { bw, Lj: 0.01, jMin: 0, jMax: 0, Lmin: L, Lmax: L, aMin: -60 * DEG, aMax: 88 * DEG, Lr: Math.max(1, Hp + 0.25 - z0 - L * Math.sin(88 * DEG)), xRiser: 0 });
+  } else if (m.boom === "tel") {
+    // pluma recta telescópica desde la torreta, con plumín corto
+    const Lj = m.H >= 20 ? 1.3 : 0.01, bw = big ? 2.3 : 1.8, aMax = 75 * DEG, jMax = Lj > 0.1 ? 60 * DEG : 0;
+    const Lmax = (Hp + 0.25 - z0 - Lj * Math.sin(jMax)) / Math.sin(aMax);
+    Object.assign(M, { bw, Lj, jMin: -jMax, jMax, Lmax, Lmin: Lmax * 0.38, aMin: -5 * DEG, aMax, Lr: 0, xRiser: 0 });
+  } else {
+    // articulada: pluma inferior (pantógrafo) + pluma telescópica + plumín
+    const Lj = big ? 1.8 : 1.3, bw = big ? 1.8 : 1.2;
+    const Lmax = m.R - Lj - bw;
+    Object.assign(M, { bw, Lj, jMin: -70 * DEG, jMax: 70 * DEG, Lmax, Lmin: Math.max(3, Lmax * 0.45), aMin: -15 * DEG, aMax: 80 * DEG, Lr: Math.max(1, Hp + 0.25 - z0 - Lmax * Math.sin(80 * DEG) - Lj * Math.sin(70 * DEG)), xRiser: 0.12 });
+  }
+  return M;
 }
-const P1of = (M, t) => [0.12 * M.Lr * t, M.z0 + M.Lr * t];
+const P1of = (M, t) => [M.xRiser * M.Lr * t, M.z0 + M.Lr * t];
 function poseOf(M, t, a, L, j) {
-  const p0 = [0, M.z0];
-  const p1 = P1of(M, t);
+  const p0 = [0, M.z0], p1 = P1of(M, t);
   const b = [p1[0] + L * Math.cos(a), p1[1] + L * Math.sin(a)];
   const jt = [b[0] + M.Lj * Math.cos(j), b[1] + M.Lj * Math.sin(j)];
   return { t, a, L, j, p0, p1, b, jt, edge: [jt[0] + M.bw, jt[1] - 0.25], floor: jt[1] - 0.25 };
 }
+function scissorPose(M, floor, ext) {
+  return { scissor: true, floor, ext, edge: [M.Ld / 2 + ext, floor] };
+}
+const range = (n, f) => Array.from({ length: n + 1 }, (_, i) => f(i / n));
 
-// envolvente: para cada franja de x, suelo de cesta mínimo y máximo alcanzable
+// zona de trabajo: suelo de plataforma mínimo y máximo alcanzable por franja de x
 const envCache = new Map();
 function envelopeOf(M) {
   if (envCache.has(M.id)) return envCache.get(M.id);
-  const step = 0.25, cols = new Map(), samples = [];
-  for (let ti = 0; ti <= 8; ti++) for (let ai = 0; ai <= 38; ai++) for (let li = 0; li <= 5; li++) for (let ji = 0; ji <= 14; ji++) {
-    const t = ti / 8, a = M.aMin + (M.aMax - M.aMin) * ai / 38, L = M.Lmin + (M.Lmax - M.Lmin) * li / 5, j = M.jMin + (M.jMax - M.jMin) * ji / 14;
-    const p = poseOf(M, t, a, L, j);
-    if (p.floor < -1) continue;
-    const x = p.edge[0], z = p.floor;
-    const k = Math.round(x / step);
-    const c = cols.get(k) || [Infinity, -Infinity];
-    cols.set(k, [Math.min(c[0], z), Math.max(c[1], z)]);
-    if ((ti + ai + li + ji) % 2 === 0) samples.push(p);
+  let env;
+  if (M.type === "tijera") {
+    const poly = [[-M.Ld / 2, M.zMin], [M.R, M.zMin], [M.R, M.Hp], [-M.Ld / 2, M.Hp]];
+    env = { poly, samples: range(12, (u) => scissorPose(M, M.zMin + (M.Hp - M.zMin) * u, M.ext)), xMax: M.R, zMax: M.Hp };
+  } else {
+    const step = 0.25, cols = new Map(), samples = [];
+    const nt = M.Lr > 0 ? 8 : 0, nl = M.Lmax > M.Lmin ? (nt ? 5 : 14) : 0, nj = M.jMax > M.jMin ? 14 : 0, na = nt ? 38 : 90;
+    for (let ti = 0; ti <= nt; ti++) for (let ai = 0; ai <= na; ai++) for (let li = 0; li <= nl; li++) for (let ji = 0; ji <= nj; ji++) {
+      const t = nt ? ti / nt : 0, a = M.aMin + (M.aMax - M.aMin) * ai / na, L = M.Lmin + (M.Lmax - M.Lmin) * (nl ? li / nl : 1), j = nj ? M.jMin + (M.jMax - M.jMin) * ji / nj : 0;
+      const p = poseOf(M, t, a, L, j);
+      if (p.floor < -1 || p.edge[0] > M.R + 0.05 || p.floor > M.Hp + 0.05) continue;
+      const k = Math.round(p.edge[0] / step);
+      const c = cols.get(k) || [Infinity, -Infinity];
+      cols.set(k, [Math.min(c[0], p.floor), Math.max(c[1], p.floor)]);
+      if ((ti + ai + li + ji) % 2 === 0) samples.push(p);
+    }
+    const keys = [...cols.keys()].sort((a, b) => a - b);
+    const top = keys.map((k) => [k * step, cols.get(k)[1]]);
+    const bottom = keys.map((k) => [k * step, Math.max(cols.get(k)[0], -1)]).reverse();
+    env = { poly: smooth(smooth(smooth(top))).concat(smooth(smooth(smooth(bottom)))), samples, xMax: keys[keys.length - 1] * step, zMax: Math.max(...top.map((p) => p[1])) };
   }
-  const keys = [...cols.keys()].sort((a, b) => a - b);
-  const top = keys.map((k) => [k * step, cols.get(k)[1]]);
-  const bottom = keys.map((k) => [k * step, Math.max(cols.get(k)[0], -1)]).reverse();
-  const env = { poly: smooth(top).concat(smooth(bottom)), top, samples, xMax: keys[keys.length - 1] * step, zMax: Math.max(...top.map((p) => p[1])) };
   envCache.set(M.id, env);
   return env;
 }
@@ -258,19 +363,18 @@ function smooth(pts) {
   });
 }
 
-// distancia de un segmento a un rectángulo (0 si se cortan)
+// geometría: distancia de un segmento a un rectángulo
 function segRect(p, q, r) {
   const inside = (x, z) => x >= r[0] && x <= r[2] && z >= r[1] && z <= r[3];
   if (inside(...p) || inside(...q)) return 0;
-  const edges = [[[r[0], r[1]], [r[2], r[1]]], [[r[2], r[1]], [r[2], r[3]]], [[r[2], r[3]], [r[0], r[3]]], [[r[0], r[3]], [r[0], r[1]]]];
+  const e = [[[r[0], r[1]], [r[2], r[1]]], [[r[2], r[1]], [r[2], r[3]]], [[r[2], r[3]], [r[0], r[3]]], [[r[0], r[3]], [r[0], r[1]]]];
   let d = Infinity;
-  for (const [u, v] of edges) d = Math.min(d, segSeg(p, q, u, v));
+  for (const [u, v] of e) d = Math.min(d, segSeg(p, q, u, v));
   return d;
 }
 function segSeg(p, q, u, v) {
-  const cross = (a, b, c) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
-  const d1 = cross(u, v, p), d2 = cross(u, v, q), d3 = cross(p, q, u), d4 = cross(p, q, v);
-  if (d1 * d2 < 0 && d3 * d4 < 0) return 0;
+  const cr = (a, b, c) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+  if (cr(u, v, p) * cr(u, v, q) < 0 && cr(p, q, u) * cr(p, q, v) < 0) return 0;
   return Math.min(ptSeg(p, u, v), ptSeg(q, u, v), ptSeg(u, p, q), ptSeg(v, p, q));
 }
 function ptSeg(p, a, b) {
@@ -278,123 +382,184 @@ function ptSeg(p, a, b) {
   const t = l ? Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dz) / l)) : 0;
   return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dz);
 }
-function clearance(M, p, obstacles) {
-  const basket = [[p.jt[0] - 0.1, p.floor], [p.edge[0], p.floor], [p.edge[0], p.floor + 1.1], [p.jt[0] - 0.1, p.floor + 1.1]];
-  const parts = [[p.p0, p.p1], [p.p1, p.b], [p.b, p.jt], [basket[0], basket[1]], [basket[1], basket[2]], [basket[3], basket[0]], [basket[2], basket[3]]];
-  let d = Infinity;
-  for (const o of obstacles) {
-    const r = [o.d - OBS_T / 2, 0, o.d + OBS_T / 2, o.h];
-    for (const [a, b] of parts) d = Math.min(d, segRect(a, b, r));
+const obsRect = (o) => [o.d - OBS_T / 2, 0, o.d + OBS_T / 2, o.h];
+function partsOf(M, p) {
+  if (p.scissor) {
+    const x0 = -M.Ld / 2, x1 = M.Ld / 2, f = p.floor;
+    return [[[x0, 0], [x0, f]], [[x1, 0], [x1, f]], [[x0, f - 0.3], [p.edge[0], f - 0.3]], [[p.edge[0], f - 0.3], [p.edge[0], f + 1.1]], [[x0, f + 1.1], [p.edge[0], f + 1.1]]];
   }
+  const bk = [[p.jt[0] - 0.1, p.floor], [p.edge[0], p.floor], [p.edge[0], p.floor + 1.1], [p.jt[0] - 0.1, p.floor + 1.1]];
+  return [[p.p0, p.p1], [p.p1, p.b], [p.b, p.jt], [bk[0], bk[1]], [bk[1], bk[2]], [bk[3], bk[0]], [bk[2], bk[3]]];
+}
+function clearance(M, p, obstacles) {
+  let d = Infinity;
+  for (const o of obstacles) for (const [a, b] of partsOf(M, p)) d = Math.min(d, segRect(a, b, obsRect(o)));
   return d;
 }
 
-// resolver: postura que deja la cesta en el objetivo con máxima holgura a obstáculos
+// resolver: postura que deja la plataforma en el objetivo con la máxima holgura a obstáculos
 function solve(M, target, obstacles) {
+  if (M.type === "tijera") {
+    const floor = target[1], ext = Math.max(0, Math.min(M.ext, target[0] - M.Ld / 2));
+    const reachOk = floor <= M.Hp + 1e-6 && floor >= M.zMin - 1e-6 && target[0] <= M.R + 1e-6;
+    const p = scissorPose(M, Math.min(Math.max(floor, M.zMin), M.Hp), reachOk ? ext : M.ext);
+    const c = obstacles.length ? clearance(M, p, obstacles) : Infinity;
+    if (reachOk && c >= SAFE) return { ok: true, pose: p, clear: c };
+    return { ok: false, geom: reachOk, pose: p, gap: Math.hypot(Math.max(0, target[0] - M.R), Math.max(0, floor - M.Hp)), clear: c };
+  }
   const jt = [target[0] - M.bw, target[1] + 0.25];
   let best = null, reach = null;
-  for (let ti = 0; ti <= 40; ti++) {
-    const t = ti / 40, p1 = P1of(M, t);
-    for (let ji = 0; ji <= 56; ji++) {
-      const j = M.jMin + (M.jMax - M.jMin) * ji / 56;
+  const nt = M.Lr > 0 ? 40 : 0, nj = M.jMax > M.jMin ? 56 : 0;
+  for (let ti = 0; ti <= nt; ti++) {
+    const t = nt ? ti / nt : 0, p1 = P1of(M, t);
+    for (let ji = 0; ji <= nj; ji++) {
+      const j = nj ? M.jMin + (M.jMax - M.jMin) * ji / nj : 0;
       const b = [jt[0] - M.Lj * Math.cos(j), jt[1] - M.Lj * Math.sin(j)];
-      const v = [b[0] - p1[0], b[1] - p1[1]];
-      const L = Math.hypot(v[0], v[1]), a = Math.atan2(v[1], v[0]);
-      if (L < M.Lmin || L > M.Lmax || a < M.aMin || a > M.aMax) continue;
-      const p = poseOf(M, t, a, L, j);
+      const L = Math.hypot(b[0] - p1[0], b[1] - p1[1]), a = Math.atan2(b[1] - p1[1], b[0] - p1[0]);
+      if (L < M.Lmin - 0.05 || L > M.Lmax + 0.05 || a < M.aMin || a > M.aMax) continue;
+      const p = poseOf(M, t, a, Math.min(Math.max(L, M.Lmin), M.Lmax), j);
       reach = reach || p;
       const c = obstacles.length ? clearance(M, p, obstacles) : Infinity;
       const score = Math.min(c, 3) - 0.05 * t;
       if (!best || score > best.score) best = { pose: p, clear: c, score };
     }
   }
-  if (best && best.clear >= SAFE) return { ok: true, pose: best.pose, clear: best.clear };
-  // sin solución: la postura que más se acerca respetando obstáculos
-  const env = envelopeOf(M);
+  const inLimits = target[0] <= M.R + 0.05 && target[1] <= M.Hp + 0.05;
+  if (best && inLimits && best.clear >= SAFE) return { ok: true, pose: best.pose, clear: best.clear };
   let near = null;
-  for (const p of env.samples) {
+  for (const p of envelopeOf(M).samples) {
     if (obstacles.length && clearance(M, p, obstacles) < SAFE) continue;
     const gap = Math.hypot(p.edge[0] - target[0], p.floor - target[1]);
     if (!near || gap < near.gap) near = { pose: p, gap };
   }
-  return { ok: false, geom: !!reach, pose: near ? near.pose : poseOf(M, 0, 0, M.Lmin, -60 * DEG), gap: near ? near.gap : Infinity, clear: best ? best.clear : 0 };
+  return { ok: false, geom: !!reach && inLimits, pose: near ? near.pose : poseOf(M, 0, 0, M.Lmin, 0), gap: near ? near.gap : Infinity, clear: best ? best.clear : 0 };
 }
 
-// ─── Estado y evaluación ───
+// ─── Estado y evaluación ─────────────────────────────────────────────────────
 const $ = (id) => document.getElementById(id);
-const state = { H: 12, D: 6, A: 2.5, energy: "all", obs: [], sel: null, auto: true };
+const state = { H: 10, D: 1, A: 2.5, C: 200, loc: "ext", terrain: "firme", points: "1", type: "all", obs: [], sel: null, auto: true };
 const MODELS = FLEET.map(modelOf);
 const fmt = (v, d = 1) => (Math.round(v * 10 ** d) / 10 ** d).toFixed(d).replace(".", ",");
 
 function evaluate(M) {
   const target = [state.D, state.H - 2];
-  const fitsWidth = M.W <= state.A;
-  const energyOk = state.energy === "all" || (state.energy === "e" ? M.energy.includes("e") : M.energy.includes("d"));
   const r = solve(M, target, state.obs);
+  const checks = {
+    alcance: state.H <= M.H && (r.ok || r.geom),
+    obstaculo: !state.obs.length || r.ok || !r.geom,
+    paso: M.Wop <= state.A,
+    carga: M.cap >= state.C,
+    terreno: state.terrain === "firme" || M.terrain === "todo",
+    ubicacion: state.loc === "ext" || M.energy.includes("e"),
+  };
   let status, label, why;
-  if (!energyOk) { status = "dim"; label = "Filtrada"; why = "No cumple el filtro de energía"; }
+  if (state.loc === "int" && !checks.ubicacion) { status = "bad"; label = "Interior"; why = "Motor de combustión: no apta para interior"; }
   else if (state.H > M.H) { status = "bad"; label = "No llega"; why = `Le faltan ${fmt(state.H - M.H)} m de altura`; }
-  else if (!r.ok && !r.geom) { status = "bad"; label = "No llega"; why = `El objetivo queda fuera de la envolvente (a ${fmt(r.gap)} m)`; }
+  else if (!r.ok && !r.geom && M.type !== "tijera" && state.D < minReachAt(envelopeOf(M), state.H - 2) - 0.1) {
+    const m = minReachAt(envelopeOf(M), state.H - 2);
+    status = "bad"; label = "Muy cerca"; why = `A esa altura la plataforma no baja de ${fmt(m)} m del centro: habría que retirar la máquina ${fmt(m - state.D)} m`;
+  }
+  else if (!r.ok && !r.geom) { status = "bad"; label = "No llega"; why = M.type === "tijera" ? `Solo alcanza ${fmt(M.R)} m en horizontal con la extensión` : `El objetivo queda fuera de su zona de trabajo (a ${fmt(r.gap)} m)`; }
   else if (!r.ok) { status = "bad"; label = "Obstáculo"; why = `No salva el obstáculo con ${fmt(SAFE)} m de margen`; }
-  else if (!fitsWidth) { status = "warn"; label = "No cabe"; why = `Mide ${fmt(M.W, 2)} m y el paso es de ${fmt(state.A, 2)} m`; }
-  else { status = "ok"; label = "Válida"; why = state.obs.length ? `Pasa a ${fmt(Math.min(r.clear, 9.9))} m del obstáculo más cercano` : "Alcanza el objetivo"; }
-  return { M, r, status, label, why, fitsWidth, energyOk };
+  else if (!checks.terreno) { status = "bad"; label = "Terreno"; why = M.type === "camion" ? "Necesita firme para estabilizadores" : "Rueda de interior: no apta para obra o terreno irregular"; }
+  else if (!checks.carga) { status = "warn"; label = "Carga"; why = `Admite ${M.cap} kg y se piden ${state.C} kg`; }
+  else if (!checks.paso) { status = "warn"; label = "No cabe"; why = `Trabaja con ${fmt(M.Wop, 2)} m de ancho y el paso es de ${fmt(state.A, 2)} m`; }
+  else { status = "ok"; label = "Válida"; why = state.obs.length ? `Pasa a ${fmt(Math.min(r.clear, 9.9))} m del obstáculo más cercano` : "Cumple todos los requisitos"; }
+  const typeOk = state.type === "all" || state.type === M.type;
+  return { M, r, status, label, why, checks, typeOk };
 }
+
+// criterio: la solución más sencilla que cumple
+function typeOrder(M) {
+  if (state.points === "n") return M.type === "camion" ? 0 : TYPES[M.type].order + 1;
+  if (M.type === "articulada" || M.type === "telescopica") return 3 + (state.obs.length ? (M.type === "telescopica" ? 0.5 : 0) : (M.type === "articulada" ? 0.5 : 0));
+  return TYPES[M.type].order;
+}
+const baseRank = (M) => ({ tijera: 0, mastil: 0, ruedas: 0, oruga: 1, camion: 2 })[M.base];
+const better = (a, b) => typeOrder(a.M) - typeOrder(b.M) || a.M.H - b.M.H || baseRank(a.M) - baseRank(b.M) || a.M.Wop - b.M.Wop || b.M.cap - a.M.cap;
 
 function recompute() {
   state.obs = [];
   if ($("o1on").checked) state.obs.push({ h: +$("o1h").value, d: +$("o1d").value });
   if ($("o2on").checked) state.obs.push({ h: +$("o2h").value, d: +$("o2d").value });
   const results = MODELS.map(evaluate);
-  const valid = results.filter((e) => e.status === "ok").sort((a, b) => a.M.H - b.M.H || baseRank(a.M) - baseRank(b.M) || a.M.W - b.M.W || a.M.R - b.M.R);
+  const valid = results.filter((e) => e.status === "ok" && e.typeOk).sort(better);
   const ideal = valid[0];
   results.forEach((e) => (e.ideal = e === ideal));
-  if (state.auto || !results.some((e) => e.M.id === state.sel)) state.sel = (ideal || results.find((e) => e.status !== "dim") || results[0]).M.id;
+  if (state.auto || !results.some((e) => e.M.id === state.sel)) state.sel = (ideal || results.filter((e) => e.typeOk).sort(closest)[0]).M.id;
   const cur = results.find((e) => e.M.id === state.sel);
+  renderTypes(results, ideal);
   renderCards(results, valid.length);
   renderVerdict(cur);
   renderPlan(cur);
   animateTo(cur);
 }
+// la que más se acerca cuando ninguna vale
+const closest = (a, b) => rank(a) - rank(b) || Math.abs(a.M.H - state.H) - Math.abs(b.M.H - state.H);
+const rank = (e) => (e.ideal ? 0 : { ok: 1, warn: 2, bad: 3 }[e.status]);
 
-// ─── Tarjetas con miniatura del diagrama ───
+// ─── Comparativa por tipo ────────────────────────────────────────────────────
+const CHECKS = [["alcance", "Alcance"], ["obstaculo", "Obstáculo"], ["paso", "Paso"], ["carga", "Carga"], ["terreno", "Terreno"], ["ubicacion", "Ubicación"]];
+function renderTypes(results, ideal) {
+  const order = ["tijera", "mastil", "articulada", "telescopica", "camion"];
+  $("types").innerHTML = order.map((t) => {
+    const all = results.filter((e) => e.M.type === t);
+    const ok = all.filter((e) => e.status === "ok").sort(better);
+    const best = ok[0] || [...all].sort((a, b) => Object.values(b.checks).filter(Boolean).length - Object.values(a.checks).filter(Boolean).length || closest(a, b))[0];
+    const win = ideal && ideal.M.type === t;
+    const badge = win ? `<span class="badge ideal">IDEAL</span>` : ok.length ? `<span class="badge ok">${ok.length} válida${ok.length > 1 ? "s" : ""}</span>` : `<span class="badge bad">Ninguna</span>`;
+    const head = ok.length ? `${best.M.name}<small>${best.why}</small>` : `Ninguna cumple<small>La más cercana: ${best.M.name} · ${best.why}</small>`;
+    const list = CHECKS.map(([k, l]) => `<li class="${best.checks[k] ? "y" : "n"}"><b>${best.checks[k] ? "✓" : "✕"}</b>${l}</li>`).join("");
+    return `<button class="type ${win ? "win" : ""}" data-id="${best.M.id}"><h4>${TYPES[t].name}${badge}</h4><span class="m">${head}</span><ul>${list}</ul><span class="when">${TYPES[t].when}</span></button>`;
+  }).join("");
+  $("winner").textContent = ideal ? `Recomendada: ${ideal.M.name}` : "Ninguna máquina cumple todos los requisitos";
+  $("rule").innerHTML = `<b>Criterio de recomendación:</b> la solución más sencilla que cumple todo: tijera → mástil → brazo (articulada si hay obstáculos, telescópica si no) → camión. Con varios puntos en vía pública, el camión pasa primero (se mueve por carretera sin transporte en góndola). Dentro de cada tipo, la de menor altura y el ancho más estrecho.`;
+}
+
+// ─── Tarjetas de flota con miniatura ─────────────────────────────────────────
 function thumbSvg(e) {
   const M = e.M, env = envelopeOf(M), W = 180, H = 104;
   const xMax = Math.max(26, state.D + 2), zMax = 45;
   const sx = (x) => 8 + (x + 2) / (xMax + 2) * (W - 14), sz = (z) => H - 8 - (z + 1) / (zMax + 1) * (H - 14);
   const path = env.poly.map((p, i) => (i ? "L" : "M") + sx(p[0]).toFixed(1) + " " + sz(p[1]).toFixed(1)).join("") + "Z";
-  const tc = e.status === "ok" || e.status === "warn" ? (e.status === "ok" ? "var(--ok)" : "var(--warn)") : "var(--bad)";
-  const obs = state.obs.map((o) => `<rect x="${sx(o.d - 0.15).toFixed(1)}" y="${sz(o.h).toFixed(1)}" width="${Math.max(1.5, sx(o.d + 0.15) - sx(o.d - 0.15)).toFixed(1)}" height="${(sz(0) - sz(o.h)).toFixed(1)}" fill="var(--navy)"/>`).join("");
+  const tc = e.status === "ok" ? "var(--ok)" : e.status === "warn" ? "var(--warn)" : "var(--bad)";
+  const obs = state.obs.map((o) => `<rect x="${sx(o.d - 0.15).toFixed(1)}" y="${sz(o.h).toFixed(1)}" width="1.6" height="${(sz(0) - sz(o.h)).toFixed(1)}" fill="var(--navy)"/>`).join("");
   return `<svg class="thumb" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="0" x2="${W}" y1="${sz(0)}" y2="${sz(0)}" stroke="#cfd6de"/><path d="${path}" fill="var(--orange-soft)" stroke="var(--orange-line)"/>${obs}<rect x="${sx(-0.8)}" y="${sz(M.z0) - 1}" width="${sx(0.8) - sx(-0.8)}" height="${sz(0) - sz(M.z0) + 1}" fill="var(--navy-2)" rx="1"/><circle cx="${sx(state.D)}" cy="${sz(state.H - 2)}" r="4" fill="${tc}" stroke="#fff" stroke-width="1.5"/></svg>`;
 }
 function renderCards(results, nValid) {
-  $("count").textContent = `${nValid} de ${results.filter((e) => e.energyOk).length} válidas`;
-  const order = [...results].sort((a, b) => rank(a) - rank(b) || a.M.H - b.M.H);
+  const shown = results.filter((e) => e.typeOk);
+  $("count").textContent = `${nValid} de ${shown.length} cumplen`;
+  const order = [...shown].sort((a, b) => rank(a) - rank(b) || better(a, b));
   $("cards").innerHTML = order.map((e) => {
-    const b = e.ideal ? `<span class="badge ok" style="background:var(--orange);color:#fff">IDEAL</span>` : `<span class="badge ${e.status === "dim" ? "warn" : e.status}">${e.label}</span>`;
-    return `<button class="card ${e.status === "dim" ? "dim" : ""}" data-id="${e.M.id}" aria-pressed="${e.M.id === state.sel}"><span class="st">${b}</span>${thumbSvg(e)}<span class="t">${e.M.name}</span><span class="specs"><span>Alt. <b>${fmt(e.M.H, 0)} m</b></span><span>Alc. <b>${fmt(e.M.R)} m</b></span><span>Anch. <b>${fmt(e.M.W, 2)} m</b></span></span></button>`;
+    const b = e.ideal ? `<span class="badge ideal">IDEAL</span>` : `<span class="badge ${e.status}">${e.label}</span>`;
+    const extra = e.M.type === "tijera" ? `<span>Plat. <b>${fmt(e.M.deck[0])}×${fmt(e.M.deck[1])}</b></span>` : `<span>Alc. <b>${fmt(e.M.R)} m</b></span>`;
+    return `<button class="card ${e.status === "bad" ? "dim" : ""}" data-id="${e.M.id}" aria-pressed="${e.M.id === state.sel}"><span class="st">${b}</span>${thumbSvg(e)}<span class="k">${TYPES[e.M.type].name}${e.M.est ? " · estimado" : ""}</span><span class="t">${e.M.name}</span><span class="specs"><span>Alt. <b>${fmt(e.M.H, 0)} m</b></span>${extra}<span>Anch. <b>${fmt(e.M.Wop, 2)}</b></span><span><b>${e.M.cap}</b> kg</span></span></button>`;
   }).join("");
 }
-const baseRank = (M) => ({ ruedas: 0, oruga: 1, camion: 2 })[M.base];
-const rank = (e) => (e.ideal ? 0 : { ok: 1, warn: 2, bad: 3, dim: 4 }[e.status]);
 
 function renderVerdict(e) {
   const M = e.M, env = envelopeOf(M);
-  $("mname").textContent = M.name;
-  const badge = e.ideal ? `<span class="badge ok">IDEAL</span>` : `<span class="badge ${e.status === "dim" ? "warn" : e.status}">${e.label}</span>`;
-  $("verdict").innerHTML = `${badge}<span class="name">${M.name}</span><span class="why">${e.why}${e.ideal ? " · la más pequeña que resuelve el trabajo" : ""}</span>`;
-  const hMargin = M.H - state.H;
-  const rMargin = M.R - state.D;
+  $("mname").textContent = TYPES[M.type].name;
+  const badge = e.ideal ? `<span class="badge ideal">IDEAL</span>` : `<span class="badge ${e.status}">${e.label}</span>`;
+  $("verdict").innerHTML = `${badge}<span class="name">${M.name}</span>${M.est ? `<span class="badge est">datos estimados</span>` : ""}<span class="why">${e.why}${e.ideal ? " · la solución más sencilla que cumple" : ""}</span>`;
+  const at = M.type === "tijera" ? (state.H <= M.H ? M.R : 0) : maxReachAt(env, state.H - 2);
   const clear = state.obs.length ? (e.r.ok ? fmt(Math.min(e.r.clear, 9.9)) + " m" : "—") : "sin obstáculos";
-  const wMargin = (state.A - M.W) / 2;
+  const wMargin = (state.A - M.Wop) / 2;
+  const persons = Math.floor(M.cap / PERSON);
   $("kpis").innerHTML = [
-    ["Altura máx.", fmt(M.H, 0) + " m", `holgura ${fmt(hMargin)} m`, hMargin >= 0],
-    ["Alcance máx.", fmt(M.R) + " m", `holgura ${fmt(rMargin)} m`, rMargin >= 0],
-    ["A la altura pedida", state.H > M.H ? "—" : fmt(maxReachAt(env, state.H - 2)) + " m", "alcance horizontal máx.", state.H <= M.H && maxReachAt(env, state.H - 2) >= state.D],
-    ["Paso a obstáculo", clear, `margen mínimo ${fmt(SAFE)} m`, !state.obs.length || e.r.ok],
-    ["Ancho máquina", fmt(M.W, 2) + " m", wMargin >= 0 ? `sobran ${fmt(wMargin, 2)} m por lado` : `faltan ${fmt(-wMargin * 2, 2)} m`, wMargin >= 0],
+    ["Altura máx.", fmt(M.H, 0) + " m", `holgura ${fmt(M.H - state.H)} m`, M.H >= state.H],
+    ["Alcance a esa altura", state.H > M.H ? "—" : fmt(at) + " m", `se piden ${fmt(state.D)} m`, state.H <= M.H && at >= state.D],
+    ["Paso a obstáculo", clear, `margen mínimo ${fmt(SAFE)} m`, e.checks.obstaculo],
+    ["Ancho de trabajo", fmt(M.Wop, 2) + " m", wMargin >= 0 ? `sobran ${fmt(wMargin, 2)} m por lado` : `faltan ${fmt(-wMargin * 2, 2)} m`, wMargin >= 0],
+    ["Carga plataforma", M.cap + " kg", `${persons} pers. o ${M.cap - Math.min(persons, 2) * PERSON} kg de material con ${Math.min(persons, 2)}`, M.cap >= state.C],
+    [M.type === "tijera" ? "Plataforma" : "Energía", M.type === "tijera" ? `${fmt(M.deck[0])}×${fmt(M.deck[1])} m` : { e: "Eléctrica", d: "Diésel", de: "Bienergía" }[M.energy], M.type === "tijera" ? `+${fmt(M.ext)} m de extensión` : M.terrain === "todo" ? "todo terreno" : "suelo firme", e.checks.ubicacion && e.checks.terreno],
   ].map(([l, v, s, ok]) => `<div class="kpi"><div class="l">${l}</div><div class="v ${ok ? "ok" : "bad"}">${v}</div><div class="s">${s}</div></div>`).join("");
   $("ficha").href = M.url;
+}
+function minReachAt(env, z) {
+  let x = Infinity;
+  for (const p of env.samples) if (Math.abs(p.floor - z) < 0.35) x = Math.min(x, p.edge[0]);
+  return x;
 }
 function maxReachAt(env, z) {
   let x = 0;
@@ -402,28 +567,27 @@ function maxReachAt(env, z) {
   return x;
 }
 
-// ─── Planta: paso disponible frente a la máquina ───
+// ─── Planta ──────────────────────────────────────────────────────────────────
 function renderPlan(e) {
-  const M = e.M, A = state.A, W = M.W;
-  const s = 150 / Math.max(5, A + 0.6), cx = 100;
-  const len = M.base === "camion" ? 7 : M.base === "oruga" ? 3.2 : W >= 3 ? 4.8 : 3.6;
-  const ln = Math.min(190, len * s * 0.8);
-  const y0 = 120 - ln / 2;
-  const fits = W <= A;
+  const M = e.M, A = state.A, W = M.W, Wop = M.Wop;
+  const s = 150 / Math.max(5, A + 0.6, Wop + 0.6), cx = 100;
+  const len = M.type === "tijera" ? M.Ld + 0.3 : M.base === "camion" ? 7 : M.base === "oruga" ? 3.2 : M.base === "mastil" ? 2.5 : W >= 3 ? 4.8 : 3.6;
+  const ln = Math.min(180, len * s * 0.8), y0 = 115 - ln / 2;
+  const fits = Wop <= A, col = fits ? "var(--ok)" : "var(--bad)";
+  const outr = Wop > W + 0.05 ? [0.18, 0.82].map((f) => `<line x1="${cx - Wop * s / 2}" x2="${cx + Wop * s / 2}" y1="${y0 + ln * f}" y2="${y0 + ln * f}" stroke="${col}" stroke-width="3"/><rect x="${cx - Wop * s / 2 - 4}" y="${y0 + ln * f - 4}" width="8" height="8" fill="${col}"/><rect x="${cx + Wop * s / 2 - 4}" y="${y0 + ln * f - 4}" width="8" height="8" fill="${col}"/>`).join("") : "";
+  const top = M.type === "tijera" ? `<rect x="${cx - M.Wd * s / 2}" y="${y0 - M.ext * s * 0.8}" width="${M.Wd * s}" height="${M.ext * s * 0.8}" fill="none" stroke="var(--orange)" stroke-dasharray="3 2"/>` : `<rect x="${cx - 4}" y="${y0 - 10}" width="8" height="${ln * 0.62 + 10}" fill="var(--orange)" rx="2"/><circle cx="${cx}" cy="${y0 + ln * 0.62}" r="${Math.min(W * s * 0.3, 22)}" fill="none" stroke="${col}" stroke-width="1.5"/>`;
   $("plan").innerHTML = `
     <rect x="0" y="0" width="${cx - A * s / 2}" height="240" fill="#e6eaef"/><rect x="${cx + A * s / 2}" y="0" width="${200 - cx - A * s / 2}" height="240" fill="#e6eaef"/>
     <line x1="${cx - A * s / 2}" x2="${cx - A * s / 2}" y1="0" y2="240" stroke="var(--navy)" stroke-width="2"/><line x1="${cx + A * s / 2}" x2="${cx + A * s / 2}" y1="0" y2="240" stroke="var(--navy)" stroke-width="2"/>
-    <rect x="${cx - W * s / 2}" y="${y0}" width="${W * s}" height="${ln}" rx="6" fill="${fits ? "var(--ok-soft)" : "var(--bad-soft)"}" stroke="${fits ? "var(--ok)" : "var(--bad)"}" stroke-width="2"/>
-    <circle cx="${cx}" cy="${y0 + ln * 0.62}" r="${Math.min(W * s * 0.3, 22)}" fill="none" stroke="${fits ? "var(--ok)" : "var(--bad)"}" stroke-width="1.5"/>
-    <rect x="${cx - 4}" y="${y0 - 10}" width="8" height="${ln * 0.62 + 10}" fill="var(--orange)" rx="2"/>
+    ${outr}<rect x="${cx - W * s / 2}" y="${y0}" width="${W * s}" height="${ln}" rx="6" fill="${fits ? "var(--ok-soft)" : "var(--bad-soft)"}" stroke="${col}" stroke-width="2"/>${top}
     <line x1="${cx - A * s / 2}" x2="${cx + A * s / 2}" y1="226" y2="226" stroke="var(--navy)" marker-start="url(#ar)" marker-end="url(#ar)"/>
     <text x="${cx}" y="220" text-anchor="middle" font-size="12" font-weight="700" fill="var(--navy)">paso ${fmt(A, 2)} m</text>
-    <text x="${cx}" y="${y0 + ln + 14}" text-anchor="middle" font-size="12" font-weight="700" fill="${fits ? "var(--ok)" : "var(--bad)"}">máquina ${fmt(W, 2)} m</text>
+    <text x="${cx}" y="${Math.min(205, y0 + ln + 14)}" text-anchor="middle" font-size="12" font-weight="700" fill="${col}">trabajo ${fmt(Wop, 2)} m</text>
     <defs><marker id="ar" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 8 4 0 8Z" fill="var(--navy)"/></marker></defs>`;
-  $("plantext").textContent = fits ? `Cabe con ${fmt((A - W) / 2, 2)} m por lado. Comprobar también giros y puertas.` : `No cabe: el paso es ${fmt(W - A, 2)} m más estrecho que la máquina.`;
+  $("plantext").textContent = (fits ? `Cabe con ${fmt((A - Wop) / 2, 2)} m por lado.` : `No cabe: el paso es ${fmt(Wop - A, 2)} m más estrecho.`) + (Wop > W + 0.05 ? ` Ancho de transporte ${fmt(W, 2)} m; trabajando con estabilizadores ${fmt(Wop, 2)} m.` : " Comprobar también giros y puertas.");
 }
 
-// ─── Alzado a escala con la máquina articulada ───
+// ─── Alzado a escala ─────────────────────────────────────────────────────────
 const svg = $("diagram");
 const VW = 760, VH = 520, PAD = { l: 52, r: 20, t: 36, b: 40 };
 let view = null;
@@ -431,12 +595,11 @@ function setView(M) {
   const env = envelopeOf(M);
   const xMax = Math.max(env.xMax + 1, state.D + 2, ...state.obs.map((o) => o.d + 2), 8);
   const zMax = Math.max(env.zMax + 3, state.H + 1, ...state.obs.map((o) => o.h + 1), 8);
-  const xMin = M.base === "camion" ? -6 : -3.5;
+  const xMin = M.base === "camion" ? -6 : M.type === "tijera" ? -M.Ld / 2 - 1.5 : -3.5;
   const k = Math.min((VW - PAD.l - PAD.r) / (xMax - xMin), (VH - PAD.t - PAD.b) / (zMax + 1));
   view = { xMin, k, x: (x) => PAD.l + (x - xMin) * k, z: (z) => VH - PAD.b - z * k, inv: (px, pz) => [(px - PAD.l) / k + xMin, (VH - PAD.b - pz) / k] };
 }
 const P = (p) => `${view.x(p[0]).toFixed(1)} ${view.z(p[1]).toFixed(1)}`;
-
 function grid() {
   const out = [];
   const [x0, x1] = [Math.ceil(view.inv(PAD.l, 0)[0]), Math.floor(view.inv(VW - PAD.r, 0)[0])];
@@ -444,104 +607,117 @@ function grid() {
   const major = view.k < 14 ? 5 : 2;
   for (let x = x0; x <= x1; x++) out.push(`<line x1="${view.x(x)}" x2="${view.x(x)}" y1="${view.z(0)}" y2="${view.z(zTop)}" stroke="${x % major ? "var(--grid)" : "#dde3e9"}"/>${x % major ? "" : `<text x="${view.x(x)}" y="${view.z(0) + 16}" font-size="11" text-anchor="middle" fill="var(--muted)">${x}</text>`}`);
   for (let z = 0; z <= zTop; z++) out.push(`<line x1="${PAD.l}" x2="${VW - PAD.r}" y1="${view.z(z)}" y2="${view.z(z)}" stroke="${z % major ? "var(--grid)" : "#dde3e9"}"/>${z % major ? "" : `<text x="${PAD.l - 8}" y="${view.z(z) + 4}" font-size="11" text-anchor="end" fill="var(--muted)">${z}</text>`}`);
-  out.push(`<text x="${VW - PAD.r}" y="${view.z(0) + 32}" font-size="11" text-anchor="end" fill="var(--muted)">distancia al eje de giro (m)</text><text x="14" y="${PAD.t - 12}" font-size="11" fill="var(--muted)">altura (m)</text>`);
+  out.push(`<text x="${VW - PAD.r}" y="${view.z(0) + 32}" font-size="11" text-anchor="end" fill="var(--muted)">distancia desde el centro de la máquina (m)</text><text x="14" y="${PAD.t - 12}" font-size="11" fill="var(--muted)">altura (m)</text>`);
   out.push(`<rect x="${PAD.l}" y="${view.z(0)}" width="${VW - PAD.l - PAD.r}" height="6" fill="#d7dde4"/>`);
   return out.join("");
 }
-
+const wheel = (x, r) => `<circle cx="${view.x(x)}" cy="${view.z(r)}" r="${r * view.k}" fill="#2a2f36"/><circle cx="${view.x(x)}" cy="${view.z(r)}" r="${r * view.k * 0.45}" fill="#9aa5b1"/>`;
 function chassis(M) {
-  const g = [];
-  const k = view.k;
+  const g = [], k = view.k;
   if (M.base === "camion") {
     g.push(`<rect x="${view.x(-5.6)}" y="${view.z(1.6)}" width="${7.4 * k}" height="${0.55 * k}" fill="var(--navy-2)" rx="2"/>`);
-    g.push(`<path d="M${P([1.8, 1.0])} L${P([1.8, 2.9])} L${P([2.9, 2.9])} L${P([3.3, 2.1])} L${P([3.3, 1.0])} Z" fill="var(--navy)"/>`);
-    g.push(`<rect x="${view.x(2.05)}" y="${view.z(2.75)}" width="${0.75 * k}" height="${0.55 * k}" fill="#cfe1f3" rx="1"/>`);
+    g.push(`<path d="M${P([1.8, 1.0])} L${P([1.8, 2.9])} L${P([2.9, 2.9])} L${P([3.3, 2.1])} L${P([3.3, 1.0])} Z" fill="var(--navy)"/><rect x="${view.x(2.05)}" y="${view.z(2.75)}" width="${0.75 * k}" height="${0.55 * k}" fill="#cfe1f3" rx="1"/>`);
     for (const x of [-4.4, -3.3, 2.4]) g.push(wheel(x, 0.5));
-    g.push(`<rect x="${view.x(-5.7)}" y="${view.z(0.9)}" width="${0.4 * k}" height="${0.9 * k}" fill="var(--navy)"/><rect x="${view.x(-5.8)}" y="${view.z(0.15)}" width="${0.6 * k}" height="${0.15 * k}" fill="var(--navy)"/>`);
+    for (const x of [-5.4, 1.4]) g.push(`<rect x="${view.x(x)}" y="${view.z(1.1)}" width="${0.3 * k}" height="${1.0 * k}" fill="var(--navy)"/><rect x="${view.x(x - 0.2)}" y="${view.z(0.12)}" width="${0.7 * k}" height="${0.12 * k}" fill="var(--navy)"/>`);
     g.push(`<rect x="${view.x(-0.6)}" y="${view.z(M.z0)}" width="${1.2 * k}" height="${(M.z0 - 2.15) * k}" fill="var(--navy)" rx="2"/>`);
   } else if (M.base === "oruga") {
     g.push(`<rect x="${view.x(-1.4)}" y="${view.z(0.55)}" width="${2.8 * k}" height="${0.55 * k}" rx="${0.27 * k}" fill="#2a2f36"/>`);
     for (const s of [-1, 1]) g.push(`<path d="M${P([s * 0.9, 0.9])} L${P([s * 2.6, 0.25])}" stroke="var(--navy)" stroke-width="${Math.max(2, 0.18 * k)}"/><rect x="${view.x(s * 2.6 - 0.3)}" y="${view.z(0.25)}" width="${0.6 * k}" height="${0.25 * k}" fill="var(--navy)"/>`);
     g.push(`<rect x="${view.x(-0.9)}" y="${view.z(M.z0)}" width="${1.8 * k}" height="${(M.z0 - 0.55) * k}" fill="var(--navy)" rx="3"/>`);
+  } else if (M.base === "mastil") {
+    g.push(`<rect x="${view.x(-1.0)}" y="${view.z(0.75)}" width="${2.0 * k}" height="${0.55 * k}" fill="var(--navy-2)" rx="3"/>`);
+    for (const x of [-0.7, 0.7]) g.push(wheel(x, 0.2));
   } else {
-    const big = M.W >= 3;
-    const half = big ? 2.4 : M.W >= 2 ? 1.6 : 1.25;
-    const r = big ? 0.7 : M.W >= 2 ? 0.55 : 0.4;
+    const big = M.W >= 3, half = big ? 2.4 : M.W >= 2 ? 1.6 : 1.25, r = big ? 0.7 : M.W >= 2 ? 0.55 : 0.4;
     g.push(`<rect x="${view.x(-half)}" y="${view.z(r * 1.7)}" width="${2 * half * k}" height="${r * 1.2 * k}" fill="var(--navy-2)" rx="3"/>`);
     for (const x of [-half + r + 0.1, half - r - 0.1]) g.push(wheel(x, r));
-    g.push(`<rect x="${view.x(-half * 0.85)}" y="${view.z(M.z0)}" width="${half * 1.5 * k}" height="${(M.z0 - r * 1.7) * k}" fill="var(--navy)" rx="3"/>`);
-    g.push(`<rect x="${view.x(-half * 0.85 - 0.35)}" y="${view.z(M.z0 - 0.05)}" width="${0.45 * k}" height="${(M.z0 - r * 1.8) * k}" fill="#3b4b5e" rx="2"/>`);
+    g.push(`<rect x="${view.x(-half * 0.85)}" y="${view.z(M.z0)}" width="${half * 1.5 * k}" height="${(M.z0 - r * 1.7) * k}" fill="var(--navy)" rx="3"/><rect x="${view.x(-half * 0.85 - 0.35)}" y="${view.z(M.z0 - 0.05)}" width="${0.45 * k}" height="${(M.z0 - r * 1.8) * k}" fill="#3b4b5e" rx="2"/>`);
   }
   return g.join("");
 }
-const wheel = (x, r) => `<circle cx="${view.x(x)}" cy="${view.z(r)}" r="${r * view.k}" fill="#2a2f36"/><circle cx="${view.x(x)}" cy="${view.z(r)}" r="${r * view.k * 0.45}" fill="#9aa5b1"/>`;
-
-function boom(a, b, w, color, cap = true) {
-  const k = view.k;
-  const width = Math.max(3, w * k);
-  return `<line x1="${view.x(a[0])}" y1="${view.z(a[1])}" x2="${view.x(b[0])}" y2="${view.z(b[1])}" stroke="${color}" stroke-width="${width}" stroke-linecap="${cap ? "round" : "butt"}"/>`;
+function boom(a, b, w, color) {
+  return `<line x1="${view.x(a[0])}" y1="${view.z(a[1])}" x2="${view.x(b[0])}" y2="${view.z(b[1])}" stroke="${color}" stroke-width="${Math.max(3, w * view.k)}" stroke-linecap="round"/>`;
 }
-function machine(M, p) {
-  const k = view.k, out = [chassis(M)];
-  // pluma inferior (pantógrafo): dos barras paralelas
-  const off = [0.35, 0];
-  out.push(boom(p.p0, p.p1, 0.32, "var(--orange)"));
-  out.push(boom([p.p0[0] - off[0], p.p0[1] + 0.2], [p.p1[0] - off[0], p.p1[1] - 0.2], 0.18, "#c45f06"));
-  // pluma superior telescópica: tramo base + tramo extensible
-  const base = [p.p1[0] + (p.b[0] - p.p1[0]) * Math.min(1, M.Lmin / p.L), p.p1[1] + (p.b[1] - p.p1[1]) * Math.min(1, M.Lmin / p.L)];
-  out.push(boom(p.p1, base, 0.46, "var(--orange)"));
-  out.push(boom(base, p.b, 0.3, "#f39a4a"));
-  out.push(`<circle cx="${view.x(p.p1[0])}" cy="${view.z(p.p1[1])}" r="${Math.max(3, 0.28 * k)}" fill="var(--navy)"/>`);
-  // plumín y cesta nivelada con barandilla y operario
-  out.push(boom(p.b, p.jt, 0.22, "var(--orange)"));
-  out.push(`<circle cx="${view.x(p.b[0])}" cy="${view.z(p.b[1])}" r="${Math.max(2.5, 0.2 * k)}" fill="var(--navy)"/>`);
-  const x0 = p.jt[0] - 0.1, x1 = p.edge[0], f = p.floor;
-  out.push(`<rect x="${view.x(x0)}" y="${view.z(f + 0.15)}" width="${(x1 - x0) * k}" height="${Math.max(2, 0.15 * k)}" fill="var(--navy)"/>`);
-  out.push(`<path d="M${P([x0, f + 0.15])} V${view.z(f + 1.1)} H${view.x(x1)} V${view.z(f + 0.15)} M${P([x0, f + 0.6])} H${view.x(x1)}" fill="none" stroke="var(--navy)" stroke-width="${Math.max(1.5, 0.07 * k)}"/>`);
-  const px = x0 + (x1 - x0) * 0.55, hr = 0.13;
-  out.push(`<g stroke="var(--ok)" stroke-width="${Math.max(1.5, 0.09 * k)}" stroke-linecap="round" fill="none"><path d="M${P([px, f + 0.15])} L${P([px, f + 1.45])} M${P([px, f + 1.35])} L${P([px + 0.35, f + 2])}"/></g><circle cx="${view.x(px)}" cy="${view.z(f + 1.6)}" r="${Math.max(2, hr * k)}" fill="var(--ok)"/>`);
+function person(x, f) {
+  const k = view.k;
+  return `<g stroke="var(--ok)" stroke-width="${Math.max(1.5, 0.09 * k)}" stroke-linecap="round" fill="none"><path d="M${P([x, f + 0.15])} L${P([x, f + 1.45])} M${P([x, f + 1.35])} L${P([x + 0.35, f + 2])}"/></g><circle cx="${view.x(x)}" cy="${view.z(f + 1.6)}" r="${Math.max(2, 0.13 * k)}" fill="var(--ok)"/>`;
+}
+function rails(x0, x1, f) {
+  const k = view.k;
+  return `<rect x="${view.x(x0)}" y="${view.z(f + 0.15)}" width="${(x1 - x0) * k}" height="${Math.max(2, 0.15 * k)}" fill="var(--navy)"/><path d="M${P([x0, f + 0.15])} V${view.z(f + 1.1)} H${view.x(x1)} V${view.z(f + 0.15)} M${P([x0, f + 0.6])} H${view.x(x1)}" fill="none" stroke="var(--navy)" stroke-width="${Math.max(1.5, 0.07 * k)}"/>`;
+}
+function scissorSvg(M, p) {
+  const k = view.k, x0 = -M.Ld / 2, x1 = M.Ld / 2, f = p.floor, out = [];
+  const r = M.W >= 2 ? 0.45 : 0.22;
+  out.push(`<rect x="${view.x(x0)}" y="${view.z(r + 0.55)}" width="${M.Ld * k}" height="${0.55 * k}" fill="var(--navy-2)" rx="3"/>`);
+  for (const x of [x0 + r + 0.1, x1 - r - 0.1]) out.push(wheel(x, r));
+  const zb = r + 0.55, zt = f - 0.3, n = Math.max(2, Math.round((zt - zb) / 1.4)), dz = (zt - zb) / n, xa = x0 + 0.25, xb = x1 - 0.25;
+  let d = "";
+  for (let i = 0; i < n; i++) { const z0 = zb + i * dz, z1 = z0 + dz; d += `M${P([xa, z0])} L${P([xb, z1])} M${P([xb, z0])} L${P([xa, z1])} `; }
+  out.push(`<path d="${d}" stroke="var(--orange)" stroke-width="${Math.max(2, 0.12 * k)}" stroke-linecap="round"/>`);
+  out.push(`<rect x="${view.x(x0)}" y="${view.z(f)}" width="${M.Ld * k}" height="${0.3 * k}" fill="var(--orange)"/>`);
+  if (p.ext > 0.01) out.push(`<rect x="${view.x(x1)}" y="${view.z(f - 0.04)}" width="${p.ext * k}" height="${0.22 * k}" fill="#f39a4a"/>`);
+  out.push(rails(x0, x1 + p.ext, f));
+  out.push(person(x1 + p.ext - 0.5, f));
   return out.join("");
 }
-
+function machine(M, p) {
+  if (M.type === "tijera") return scissorSvg(M, p);
+  const k = view.k, out = [chassis(M)];
+  if (M.boom === "mast") {
+    out.push(`<rect x="${view.x(-0.25)}" y="${view.z(p.p1[1])}" width="${0.5 * k}" height="${(p.p1[1] - 0.75) * k}" fill="var(--orange)"/>`);
+    for (let z = 1.5; z < p.p1[1]; z += 1.6) out.push(`<line x1="${view.x(-0.25)}" x2="${view.x(0.25)}" y1="${view.z(z)}" y2="${view.z(z)}" stroke="#c45f06" stroke-width="1.5"/>`);
+  } else if (M.Lr > 0) {
+    out.push(boom(p.p0, p.p1, 0.32, "var(--orange)"));
+    out.push(boom([p.p0[0] - 0.35, p.p0[1] + 0.2], [p.p1[0] - 0.35, p.p1[1] - 0.2], 0.18, "#c45f06"));
+  }
+  const base = [p.p1[0] + (p.b[0] - p.p1[0]) * Math.min(1, M.Lmin / p.L), p.p1[1] + (p.b[1] - p.p1[1]) * Math.min(1, M.Lmin / p.L)];
+  out.push(boom(p.p1, base, M.boom === "tel" ? 0.5 : M.boom === "mast" ? 0.2 : 0.46, "var(--orange)"));
+  if (p.L > M.Lmin + 0.05) out.push(boom(base, p.b, 0.3, "#f39a4a"));
+  out.push(`<circle cx="${view.x(p.p1[0])}" cy="${view.z(p.p1[1])}" r="${Math.max(3, 0.28 * k)}" fill="var(--navy)"/>`);
+  if (M.Lj > 0.1) { out.push(boom(p.b, p.jt, 0.22, "var(--orange)")); out.push(`<circle cx="${view.x(p.b[0])}" cy="${view.z(p.b[1])}" r="${Math.max(2.5, 0.2 * k)}" fill="var(--navy)"/>`); }
+  const x0 = p.jt[0] - 0.1, x1 = p.edge[0];
+  out.push(rails(x0, x1, p.floor));
+  out.push(person(x0 + (x1 - x0) * 0.55, p.floor));
+  return out.join("");
+}
 function scene(e, p) {
-  const M = e.M, env = envelopeOf(M), k = view.k;
-  const out = [grid()];
+  const M = e.M, env = envelopeOf(M), k = view.k, out = [grid()];
   out.push(`<path d="${env.poly.map((q, i) => (i ? "L" : "M") + P(q)).join("")}Z" fill="var(--orange-soft)" stroke="var(--orange-line)" stroke-width="1.5" stroke-dasharray="5 4" opacity=".9"/>`);
   for (const o of state.obs) {
     out.push(`<rect x="${view.x(o.d - OBS_T / 2 - SAFE)}" y="${view.z(o.h + SAFE)}" width="${(OBS_T + 2 * SAFE) * k}" height="${(o.h + SAFE) * k}" fill="#1d3a5c12" stroke="#1d3a5c40" stroke-dasharray="3 3"/>`);
-    out.push(`<rect x="${view.x(o.d - OBS_T / 2)}" y="${view.z(o.h)}" width="${Math.max(3, OBS_T * k)}" height="${o.h * k}" fill="var(--navy)"/>`);
-    out.push(`<text x="${view.x(o.d) + 6}" y="${view.z(o.h) - 6}" font-size="11" font-weight="700" fill="var(--navy)">${fmt(o.h)} m</text>`);
+    out.push(`<rect x="${view.x(o.d - OBS_T / 2)}" y="${view.z(o.h)}" width="${Math.max(3, OBS_T * k)}" height="${o.h * k}" fill="var(--navy)"/><text x="${view.x(o.d) + 6}" y="${view.z(o.h) - 6}" font-size="11" font-weight="700" fill="var(--navy)">${fmt(o.h)} m</text>`);
   }
-  const ok = e.status === "ok" || e.status === "warn";
-  const T = [state.D, state.H - 2];
-  if (!ok && e.r.pose) out.push(`<line x1="${view.x(e.r.pose.edge[0])}" y1="${view.z(e.r.pose.floor + 2)}" x2="${view.x(T[0])}" y2="${view.z(T[1] + 2)}" stroke="var(--bad)" stroke-width="2" stroke-dasharray="4 4"/>`);
-  out.push(`<g id="mach">${machine(M, p)}</g>`);
+  const ok = e.status === "ok" || e.status === "warn", T = [state.D, state.H - 2];
+  if (!e.r.ok) out.push(`<line x1="${view.x(p.edge[0])}" y1="${view.z(p.floor + 2)}" x2="${view.x(T[0])}" y2="${view.z(T[1] + 2)}" stroke="var(--bad)" stroke-width="2" stroke-dasharray="4 4"/>`);
+  out.push(machine(M, p));
   const col = ok ? "var(--ok)" : "var(--bad)";
-  out.push(`<circle cx="${view.x(T[0])}" cy="${view.z(T[1] + 2)}" r="13" fill="${col}" opacity=".15"/><circle cx="${view.x(T[0])}" cy="${view.z(T[1] + 2)}" r="6" fill="${col}" stroke="#fff" stroke-width="2"/>`);
-  out.push(`<text x="${view.x(T[0]) + 12}" y="${view.z(T[1] + 2) - 10}" font-size="12" font-weight="800" fill="${col}">Objetivo ${fmt(state.H)} m · ${fmt(state.D)} m</text>`);
-  // cotas: altura de trabajo y suelo de cesta
+  out.push(`<circle cx="${view.x(T[0])}" cy="${view.z(T[1] + 2)}" r="13" fill="${col}" opacity=".15"/><circle cx="${view.x(T[0])}" cy="${view.z(T[1] + 2)}" r="6" fill="${col}" stroke="#fff" stroke-width="2"/><text x="${view.x(T[0]) + 12}" y="${view.z(T[1] + 2) - 10}" font-size="12" font-weight="800" fill="${col}">Objetivo ${fmt(state.H)} m · ${fmt(state.D)} m</text>`);
   const cx = VW - PAD.r - 8;
-  out.push(`<g font-size="11" fill="var(--muted)"><line x1="${cx}" x2="${cx}" y1="${view.z(0)}" y2="${view.z(state.H)}" stroke="#aab4bf"/><line x1="${cx - 5}" x2="${cx + 5}" y1="${view.z(state.H)}" y2="${view.z(state.H)}" stroke="#aab4bf"/><text x="${cx - 6}" y="${view.z(state.H) - 4}" text-anchor="end">H ${fmt(state.H)} m</text><line x1="${cx - 5}" x2="${cx + 5}" y1="${view.z(state.H - 2)}" y2="${view.z(state.H - 2)}" stroke="#aab4bf"/><text x="${cx - 6}" y="${view.z(state.H - 2) + 13}" text-anchor="end">cesta ${fmt(state.H - 2)} m</text></g>`);
+  out.push(`<g font-size="11" fill="var(--muted)"><line x1="${cx}" x2="${cx}" y1="${view.z(0)}" y2="${view.z(state.H)}" stroke="#aab4bf"/><line x1="${cx - 5}" x2="${cx + 5}" y1="${view.z(state.H)}" y2="${view.z(state.H)}" stroke="#aab4bf"/><text x="${cx - 6}" y="${view.z(state.H) - 4}" text-anchor="end">H ${fmt(state.H)} m</text><line x1="${cx - 5}" x2="${cx + 5}" y1="${view.z(state.H - 2)}" y2="${view.z(state.H - 2)}" stroke="#aab4bf"/><text x="${cx - 6}" y="${view.z(state.H - 2) + 13}" text-anchor="end">plataforma ${fmt(state.H - 2)} m</text></g>`);
   return out.join("");
 }
 
-// animación de la postura: interpola articulaciones
+// animación: interpola articulaciones (o altura y extensión en tijeras)
 let shown = null, anim = 0;
 const still = matchMedia("(prefers-reduced-motion: reduce)");
+function stowed(M) { return M.type === "tijera" ? scissorPose(M, M.zMin, 0) : poseOf(M, 0, -5 * DEG, M.Lmin, M.Lj > 0.1 ? -50 * DEG : 0); }
 function animateTo(e) {
   const M = e.M;
   setView(M);
-  const to = e.r.pose;
-  const from = shown && shown.id === M.id ? shown.pose : poseOf(M, 0, -10 * DEG, M.Lmin, -50 * DEG);
+  const to = e.r.pose, from = shown && shown.id === M.id ? shown.pose : stowed(M);
   cancelAnimationFrame(anim);
-  const t0 = performance.now(), dur = still.matches ? 0 : (shown && shown.id === M.id ? 380 : 900);
+  const t0 = performance.now(), dur = still.matches ? 0 : shown && shown.id === M.id ? 380 : 900;
   const lerp = (a, b, u) => [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u];
   const frame = (now) => {
-    const u = dur ? Math.min(1, (now - t0) / dur) : 1;
-    const s = 1 - Math.pow(1 - u, 3);
-    const p = { ...to, p0: to.p0, p1: lerp(from.p1, to.p1, s), b: lerp(from.b, to.b, s), jt: lerp(from.jt, to.jt, s), L: from.L + (to.L - from.L) * s };
-    p.edge = [p.jt[0] + M.bw, p.jt[1] - 0.25];
-    p.floor = p.jt[1] - 0.25;
+    const u = dur ? Math.min(1, (now - t0) / dur) : 1, s = 1 - Math.pow(1 - u, 3);
+    let p;
+    if (M.type === "tijera") p = scissorPose(M, from.floor + (to.floor - from.floor) * s, from.ext + (to.ext - from.ext) * s);
+    else {
+      p = { ...to, p1: lerp(from.p1, to.p1, s), b: lerp(from.b, to.b, s), jt: lerp(from.jt, to.jt, s), L: from.L + (to.L - from.L) * s };
+      p.edge = [p.jt[0] + M.bw, p.jt[1] - 0.25];
+      p.floor = p.jt[1] - 0.25;
+    }
     svg.innerHTML = scene(e, p);
     if (u < 1) anim = requestAnimationFrame(frame);
     else shown = { id: M.id, pose: to };
@@ -549,29 +725,29 @@ function animateTo(e) {
   anim = requestAnimationFrame(frame);
 }
 
-// ─── Entradas ───
-function bindRange(id, key, out, d = 1) {
+// ─── Entradas ────────────────────────────────────────────────────────────────
+let pending = 0;
+const schedule = () => { cancelAnimationFrame(pending); pending = requestAnimationFrame(recompute); };
+function bindRange(id, key, out, unit = "m", d = 1) {
   const el = $(id);
-  const show = () => { $(out).innerHTML = fmt(+el.value, d) + "<small>m</small>"; };
+  const show = () => { $(out).innerHTML = (unit === "kg" ? el.value : fmt(+el.value, d)) + `<small>${unit}</small>`; };
   el.addEventListener("input", () => { state[key] = +el.value; show(); state.auto = true; schedule(); });
   state[key] = +el.value; show();
 }
-let pending = 0;
-const schedule = () => { cancelAnimationFrame(pending); pending = requestAnimationFrame(recompute); };
 bindRange("h", "H", "hv");
 bindRange("d", "D", "dv");
-bindRange("a", "A", "av", 2);
+bindRange("a", "A", "av", "m", 2);
+bindRange("c", "C", "cv", "kg");
 for (const id of ["o1on", "o2on", "o1h", "o1d", "o2h", "o2d"]) $(id).addEventListener("input", () => { $("o1").classList.toggle("off", !$("o1on").checked); $("o2").classList.toggle("off", !$("o2on").checked); state.auto = true; schedule(); });
-document.querySelectorAll("[data-energy]").forEach((b) => b.addEventListener("click", () => {
-  document.querySelectorAll("[data-energy]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-  state.energy = b.dataset.energy; state.auto = true; schedule();
+document.querySelectorAll("[data-group]").forEach((g) => g.addEventListener("click", (ev) => {
+  const b = ev.target.closest(".chip");
+  if (!b) return;
+  g.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === b));
+  state[g.dataset.group] = b.dataset.v; state.auto = true; schedule();
 }));
-$("cards").addEventListener("click", (ev) => {
-  const c = ev.target.closest(".card");
-  if (!c) return;
-  state.sel = c.dataset.id; state.auto = false; recompute();
-});
-// arrastrar el objetivo en el diagrama
+const pick = (ev) => { const c = ev.target.closest("[data-id]"); if (c) { state.sel = c.dataset.id; state.auto = false; recompute(); } };
+$("cards").addEventListener("click", pick);
+$("types").addEventListener("click", pick);
 let dragging = false;
 function dragTo(ev) {
   const r = svg.getBoundingClientRect();
