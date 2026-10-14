@@ -41,6 +41,19 @@ Basta con pedirlo en lenguaje natural dentro de una sesión de Claude Code sobre
 2. **No funciona en sesiones en la nube**: allí los plugins no se cargan y el contenedor se borra al terminar.
 3. **Datos**: guarda en local (SQLite + Chroma) resúmenes de todo lo que hace Claude, incluidos datos de negocio. **No actives "Cloud Sync" ni la variante `claude-mem-cowork`** (envían las observaciones a cmem.ai) sin decidirlo antes. Usa etiquetas `<private>…</private>` para lo que no deba guardarse.
 
+## Instalar en tu cuenta de claude.ai (recomendado)
+
+Una skill activada en claude.ai está disponible en el chat, Cowork, Claude Code local y sesiones en la nube.
+
+```bash
+scripts/build-claude-ai-zips.sh   # genera dist/karpathy-guidelines.zip, diagram-design.zip, ppt-master.zip
+```
+
+Subir cada `.zip` en claude.ai → Ajustes → Capacidades → Skills → Subir skill.
+
+- `ppt-master.zip` va **recortado** (sin `templates/icons` ni `templates/sounds`) para cumplir el límite de 30 MB: sin librería de iconos ni efectos de sonido. Para la versión completa, usar Claude Code sobre este repo.
+- REA, api-desde-app y claude-mem necesitan ejecutarse en tu equipo: no se suben.
+
 ## Actualizar las skills
 
 ```bash
