@@ -154,8 +154,6 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
           <div class="chips" data-group="loc"><button class="chip" data-v="ext" aria-pressed="true">Exterior</button><button class="chip" data-v="int" aria-pressed="false">Interior (sin humos)</button></div></div>
         <div class="field"><label>Terreno</label>
           <div class="chips" data-group="terrain"><button class="chip" data-v="firme" aria-pressed="true">Firme y nivelado</button><button class="chip" data-v="obra" aria-pressed="false">Obra / irregular</button></div></div>
-        <div class="field"><label>Puntos de trabajo</label>
-          <div class="chips" data-group="points"><button class="chip" data-v="1" aria-pressed="true">Uno</button><button class="chip" data-v="n" aria-pressed="false">Varios en vía pública</button></div></div>
         <div class="field"><label>Tipo de máquina</label>
           <div class="chips" data-group="type"><button class="chip" data-v="all" aria-pressed="true">Todos</button><button class="chip" data-v="tijera" aria-pressed="false">Tijera</button><button class="chip" data-v="mastil" aria-pressed="false">Mástil</button><button class="chip" data-v="articulada" aria-pressed="false">Articulada</button><button class="chip" data-v="telescopica" aria-pressed="false">Telescópica</button><button class="chip" data-v="camion" aria-pressed="false">Camión</button></div></div>
 
@@ -283,7 +281,7 @@ const TYPES = {
   mastil: { name: "Mástil vertical", order: 2, url: PE + "plataformas-elevadoras-mastil-vertical/", when: "Interiores estrechos y suelos delicados: muy compacta y ligera, con plumín corto para salvar algo de altura." },
   articulada: { name: "Articulada", order: 3, url: PE + "plataformas-elevadoras-articuladas/", when: "Pasar por encima de obstáculos y llegar a zonas de difícil acceso. Menos carga en cesta que una tijera." },
   telescopica: { name: "Telescópica", order: 3, url: PE + "plataformas-elevadoras-telescopicas/", when: "Máximo alcance horizontal y altura con la máquina lejos del punto, sin obstáculos cerca de la base." },
-  camion: { name: "Camión plataforma", order: 4, url: CAT + "camiones-plataformas/", when: "Varios puntos en vía pública: va por carretera sin góndola y monta rápido. Necesita firme y espacio para estabilizadores." },
+  camion: { name: "Camión plataforma", order: 4, url: CAT + "camiones-plataformas/", when: "Va por carretera sin góndola y monta rápido; útil en vía pública. Necesita firme y espacio para estabilizadores." },
 };
 
 // ─── Modelos cinemáticos aproximados ─────────────────────────────────────────
@@ -440,7 +438,7 @@ function solve(M, target, obstacles) {
 
 // ─── Estado y evaluación ─────────────────────────────────────────────────────
 const $ = (id) => document.getElementById(id);
-const state = { H: 10, D: 1, A: 2.5, C: 200, loc: "ext", terrain: "firme", points: "1", type: "all", obs: [], sel: null, auto: true };
+const state = { H: 10, D: 1, A: 2.5, C: 200, loc: "ext", terrain: "firme", type: "all", obs: [], sel: null, auto: true };
 const MODELS = FLEET.map(modelOf);
 const fmt = (v, d = 1) => (Math.round(v * 10 ** d) / 10 ** d).toFixed(d).replace(".", ",");
 
@@ -474,7 +472,6 @@ function evaluate(M) {
 
 // criterio: la solución más sencilla que cumple
 function typeOrder(M) {
-  if (state.points === "n") return M.type === "camion" ? 0 : TYPES[M.type].order + 1;
   if (M.type === "articulada" || M.type === "telescopica") return 3 + (state.obs.length ? (M.type === "telescopica" ? 0.5 : 0) : (M.type === "articulada" ? 0.5 : 0));
   return TYPES[M.type].order;
 }
@@ -516,7 +513,7 @@ function renderTypes(results, ideal) {
     return `<div class="type ${win ? "win" : ""}" role="button" tabindex="0" data-id="${best.M.id}"><h4>${TYPES[t].name}${badge}</h4><span class="m">${head}</span><ul>${list}</ul><span class="when">${TYPES[t].when}</span><a class="lnk" href="${TYPES[t].url}" target="_blank" rel="noopener">Ver familia ${TYPES[t].name.toLowerCase()} (${all.length}) ↗</a></div>`;
   }).join("");
   $("winner").textContent = ideal ? `Recomendada: ${ideal.M.name}` : "Ninguna máquina cumple todos los requisitos";
-  $("rule").innerHTML = `<b>Criterio de recomendación:</b> la solución más sencilla que cumple todo: tijera → mástil → brazo (articulada si hay obstáculos, telescópica si no) → camión. Con varios puntos en vía pública, el camión pasa primero (se mueve por carretera sin transporte en góndola). Dentro de cada tipo, la de menor altura y el ancho más estrecho.`;
+  $("rule").innerHTML = `<b>Criterio de recomendación:</b> la solución más sencilla que cumple todo: tijera → mástil → brazo (articulada si hay obstáculos, telescópica si no) → camión. Dentro de cada tipo, la de menor altura y el ancho más estrecho.`;
 }
 
 // ─── Tarjetas de flota con miniatura ─────────────────────────────────────────
