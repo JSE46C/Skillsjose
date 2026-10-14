@@ -46,12 +46,15 @@ Basta con pedirlo en lenguaje natural dentro de una sesión de Claude Code sobre
 Una skill activada en claude.ai está disponible en el chat, Cowork, Claude Code local y sesiones en la nube.
 
 ```bash
-scripts/build-claude-ai-zips.sh   # genera dist/karpathy-guidelines.zip, diagram-design.zip, ppt-master.zip
+scripts/build-claude-ai-zips.sh   # genera dist/karpathy-guidelines.zip y dist/diagram-design.zip
 ```
 
 Subir cada `.zip` en claude.ai → Ajustes → Capacidades → Skills → Subir skill.
 
-- `ppt-master.zip` va **recortado** (sin `templates/icons` ni `templates/sounds`) para cumplir el límite de 30 MB: sin librería de iconos ni efectos de sonido. Para la versión completa, usar Claude Code sobre este repo.
+Límites de claude.ai por skill: 30 MB, **200 ficheros** y descripción de **200 caracteres**. El script los respeta:
+- Sustituye la descripción por una versión corta en español.
+- `diagram-design` va recortada: de los ejemplos solo la variante clara de cada tipo (las plantillas oscura/editorial/terminal sí van).
+- **ppt-master no se puede subir** (~800 ficheros, solo los scripts son ~290). En claude.ai usar la skill de PowerPoint integrada; ppt-master completo desde Claude Code en el PC (copiar `.claude/skills/ppt-master` a `~/.claude/skills/` e instalar `requirements.txt`).
 - REA, api-desde-app y claude-mem necesitan ejecutarse en tu equipo: no se suben.
 
 ## Actualizar las skills
