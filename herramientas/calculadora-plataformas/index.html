@@ -59,7 +59,7 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 .badge.est{background:#eef1f4;color:var(--muted);font-weight:600;font-size:11px}
 .verdict .name{font-weight:800;color:var(--navy)}
 .verdict .why{color:var(--muted);font-size:13px}
-.kpis{display:grid;grid-template-columns:repeat(6,1fr);border-bottom:1px solid var(--line)}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}
 .kpi{padding:10px 12px;border-right:1px solid var(--line)}
 .kpi:last-child{border-right:0}
 .kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
@@ -143,11 +143,6 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
           <input id="a" type="range" min="0.7" max="5" step="0.05" value="2.5">
           <div class="hint">Se compara con el ancho de trabajo (con estabilizadores si los lleva).</div>
         </div>
-        <div class="field">
-          <label for="c">Carga en plataforma <output id="cv"></output></label>
-          <input id="c" type="range" min="80" max="750" step="10" value="200">
-          <div class="hint">Personas (80 kg c/u) + herramientas + material.</div>
-        </div>
 
         <div class="sub">Condiciones</div>
         <div class="field"><label>Ubicación</label>
@@ -171,7 +166,7 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
             <div><label for="o2d">Distancia (m)</label><input id="o2d" type="number" min="0.5" max="24" step="0.5" value="1.5"></div>
           </div>
         </div>
-        <div class="notice"><b>Aviso:</b> estimación orientativa. Las envolventes se calculan con un modelo a partir de la altura y el alcance de catálogo; los datos marcados como <i>estimado</i> son valores típicos del mercado pendientes de confirmar con la ficha. Verificar: (1) combustión permitida, (2) ancho de paso, (3) carga máxima sobre el suelo y (4) inclinación del terreno. Mainsa no se responsabiliza del uso inadecuado.</div>
+        <div class="notice"><b>Aviso:</b> estimación orientativa. Las envolventes se calculan con un modelo a partir de la altura y el alcance de catálogo; los datos marcados como <i>estimado</i> son valores típicos del mercado pendientes de confirmar con la ficha. Verificar: (1) combustión permitida, (2) ancho de paso, (3) carga máxima sobre el suelo y (4) inclinación del terreno. Las plataformas son para personas y herramienta de mano: como norma, máximo 300 kg en plataforma; no se usan para subir material. Mainsa no se responsabiliza del uso inadecuado.</div>
       </div>
     </section>
 
@@ -219,7 +214,7 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 <script>
 // ─── Flota ───────────────────────────────────────────────────────────────────
 // H altura de trabajo (m) · R alcance horizontal máx. (m) · W ancho de transporte · Wop ancho de trabajo (con estabilizadores)
-// cap carga en plataforma (kg) · energy e/d/de · terrain firme|todo · est: datos técnicos típicos pendientes de confirmar
+// cap carga nominal de ficha (kg, no se usa en la selección) · energy e/d/de · terrain firme|todo · est: datos técnicos típicos pendientes de confirmar
 const CAT = "https://grupomainsa.es/catalogo/mainsa-plataformas/";
 const PE = CAT + "plataformas-elevadoras/";
 const TIJ = PE + "plataformas-elevadoras-tijeras/";
@@ -277,9 +272,9 @@ const FLEET = [
   { id: "c24", type: "camion", boom: "art", base: "camion", name: "Camión plataforma articulado 24 m", H: 24, R: 13, W: 2.1, Wop: 2.6, cap: 200, energy: "d", terrain: "firme", url: CAT + "camiones-plataformas/camion-plataforma-articulado-diesel-24m" },
 ];
 const TYPES = {
-  tijera: { name: "Tijera", order: 1, url: PE + "plataformas-elevadoras-tijeras/", when: "Trabajo en vertical sobre la máquina: la más económica, con más superficie y carga en plataforma. Solo alcanza en horizontal lo que da su extensión." },
+  tijera: { name: "Tijera", order: 1, url: PE + "plataformas-elevadoras-tijeras/", when: "Trabajo en vertical sobre la máquina: la más económica y con más superficie de plataforma. Solo alcanza en horizontal lo que da su extensión." },
   mastil: { name: "Mástil vertical", order: 2, url: PE + "plataformas-elevadoras-mastil-vertical/", when: "Interiores estrechos y suelos delicados: muy compacta y ligera, con plumín corto para salvar algo de altura." },
-  articulada: { name: "Articulada", order: 3, url: PE + "plataformas-elevadoras-articuladas/", when: "Pasar por encima de obstáculos y llegar a zonas de difícil acceso. Menos carga en cesta que una tijera." },
+  articulada: { name: "Articulada", order: 3, url: PE + "plataformas-elevadoras-articuladas/", when: "Pasar por encima de obstáculos y llegar a zonas de difícil acceso. Cesta más pequeña que una tijera." },
   telescopica: { name: "Telescópica", order: 3, url: PE + "plataformas-elevadoras-telescopicas/", when: "Máximo alcance horizontal y altura con la máquina lejos del punto, sin obstáculos cerca de la base." },
   camion: { name: "Camión plataforma", order: 4, url: CAT + "camiones-plataformas/", when: "Va por carretera sin góndola y monta rápido; útil en vía pública. Necesita firme y espacio para estabilizadores." },
 };
@@ -288,7 +283,6 @@ const TYPES = {
 const DEG = Math.PI / 180;
 const SAFE = 0.5; // margen a obstáculos (m)
 const OBS_T = 0.3; // espesor del obstáculo (m)
-const PERSON = 80; // kg
 
 function modelOf(m) {
   const Hp = m.H - 2;
@@ -438,7 +432,7 @@ function solve(M, target, obstacles) {
 
 // ─── Estado y evaluación ─────────────────────────────────────────────────────
 const $ = (id) => document.getElementById(id);
-const state = { H: 10, D: 1, A: 2.5, C: 200, loc: "ext", terrain: "firme", type: "all", obs: [], sel: null, auto: true };
+const state = { H: 10, D: 1, A: 2.5, loc: "ext", terrain: "firme", type: "all", obs: [], sel: null, auto: true };
 const MODELS = FLEET.map(modelOf);
 const fmt = (v, d = 1) => (Math.round(v * 10 ** d) / 10 ** d).toFixed(d).replace(".", ",");
 
@@ -449,7 +443,6 @@ function evaluate(M) {
     alcance: state.H <= M.H && (r.ok || r.geom),
     obstaculo: !state.obs.length || r.ok || !r.geom,
     paso: M.Wop <= state.A,
-    carga: M.cap >= state.C,
     terreno: state.terrain === "firme" || M.terrain === "todo",
     ubicacion: state.loc === "ext" || M.energy.includes("e"),
   };
@@ -463,7 +456,6 @@ function evaluate(M) {
   else if (!r.ok && !r.geom) { status = "bad"; label = "No llega"; why = M.type === "tijera" ? `Solo alcanza ${fmt(M.R)} m en horizontal con la extensión` : `El objetivo queda fuera de su zona de trabajo (a ${fmt(r.gap)} m)`; }
   else if (!r.ok) { status = "bad"; label = "Obstáculo"; why = `No salva el obstáculo con ${fmt(SAFE)} m de margen`; }
   else if (!checks.terreno) { status = "bad"; label = "Terreno"; why = M.type === "camion" ? "Necesita firme para estabilizadores" : "Rueda de interior: no apta para obra o terreno irregular"; }
-  else if (!checks.carga) { status = "warn"; label = "Carga"; why = `Admite ${M.cap} kg y se piden ${state.C} kg`; }
   else if (!checks.paso) { status = "warn"; label = "No cabe"; why = `Trabaja con ${fmt(M.Wop, 2)} m de ancho y el paso es de ${fmt(state.A, 2)} m`; }
   else { status = "ok"; label = "Válida"; why = state.obs.length ? `Pasa a ${fmt(Math.min(r.clear, 9.9))} m del obstáculo más cercano` : "Cumple todos los requisitos"; }
   const typeOk = state.type === "all" || state.type === M.type;
@@ -476,7 +468,7 @@ function typeOrder(M) {
   return TYPES[M.type].order;
 }
 const baseRank = (M) => ({ tijera: 0, mastil: 0, ruedas: 0, oruga: 1, camion: 2 })[M.base];
-const better = (a, b) => typeOrder(a.M) - typeOrder(b.M) || a.M.H - b.M.H || baseRank(a.M) - baseRank(b.M) || a.M.Wop - b.M.Wop || b.M.cap - a.M.cap;
+const better = (a, b) => typeOrder(a.M) - typeOrder(b.M) || a.M.H - b.M.H || baseRank(a.M) - baseRank(b.M) || a.M.Wop - b.M.Wop;
 
 function recompute() {
   state.obs = [];
@@ -499,7 +491,7 @@ const closest = (a, b) => rank(a) - rank(b) || Math.abs(a.M.H - state.H) - Math.
 const rank = (e) => (e.ideal ? 0 : { ok: 1, warn: 2, bad: 3 }[e.status]);
 
 // ─── Comparativa por tipo ────────────────────────────────────────────────────
-const CHECKS = [["alcance", "Alcance"], ["obstaculo", "Obstáculo"], ["paso", "Paso"], ["carga", "Carga"], ["terreno", "Terreno"], ["ubicacion", "Ubicación"]];
+const CHECKS = [["alcance", "Alcance"], ["obstaculo", "Obstáculo"], ["paso", "Paso"], ["terreno", "Terreno"], ["ubicacion", "Ubicación"]];
 function renderTypes(results, ideal) {
   const order = ["tijera", "mastil", "articulada", "telescopica", "camion"];
   $("types").innerHTML = order.map((t) => {
@@ -533,7 +525,7 @@ function renderCards(results, nValid) {
   $("cards").innerHTML = order.map((e) => {
     const b = e.ideal ? `<span class="badge ideal">IDEAL</span>` : `<span class="badge ${e.status}">${e.label}</span>`;
     const extra = e.M.type === "tijera" ? `<span>Plat. <b>${fmt(e.M.deck[0])}×${fmt(e.M.deck[1])}</b></span>` : `<span>Alc. <b>${fmt(e.M.R)} m</b></span>`;
-    return `<div class="card ${e.status === "bad" ? "dim" : ""}" role="button" tabindex="0" data-id="${e.M.id}" aria-pressed="${e.M.id === state.sel}"><span class="st">${b}</span>${thumbSvg(e)}<span class="k">${TYPES[e.M.type].name}${e.M.est ? " · estimado" : ""}</span><span class="t">${e.M.name}</span><span class="specs"><span>Alt. <b>${fmt(e.M.H, 0)} m</b></span>${extra}<span>Anch. <b>${fmt(e.M.Wop, 2)}</b></span><span><b>${e.M.cap}</b> kg</span></span><a class="lnk" href="${e.M.url}" target="_blank" rel="noopener">Ficha ↗</a></div>`;
+    return `<div class="card ${e.status === "bad" ? "dim" : ""}" role="button" tabindex="0" data-id="${e.M.id}" aria-pressed="${e.M.id === state.sel}"><span class="st">${b}</span>${thumbSvg(e)}<span class="k">${TYPES[e.M.type].name}${e.M.est ? " · estimado" : ""}</span><span class="t">${e.M.name}</span><span class="specs"><span>Alt. <b>${fmt(e.M.H, 0)} m</b></span>${extra}<span>Anch. <b>${fmt(e.M.Wop, 2)}</b></span></span><a class="lnk" href="${e.M.url}" target="_blank" rel="noopener">Ficha ↗</a></div>`;
   }).join("");
 }
 
@@ -545,13 +537,11 @@ function renderVerdict(e) {
   const at = M.type === "tijera" ? (state.H <= M.H ? M.R : 0) : maxReachAt(env, state.H - 2);
   const clear = state.obs.length ? (e.r.ok ? fmt(Math.min(e.r.clear, 9.9)) + " m" : "—") : "sin obstáculos";
   const wMargin = (state.A - M.Wop) / 2;
-  const persons = Math.floor(M.cap / PERSON);
   $("kpis").innerHTML = [
     ["Altura máx.", fmt(M.H, 0) + " m", `holgura ${fmt(M.H - state.H)} m`, M.H >= state.H],
     ["Alcance a esa altura", state.H > M.H ? "—" : fmt(at) + " m", `se piden ${fmt(state.D)} m`, state.H <= M.H && at >= state.D],
     ["Paso a obstáculo", clear, `margen mínimo ${fmt(SAFE)} m`, e.checks.obstaculo],
     ["Ancho de trabajo", fmt(M.Wop, 2) + " m", wMargin >= 0 ? `sobran ${fmt(wMargin, 2)} m por lado` : `faltan ${fmt(-wMargin * 2, 2)} m`, wMargin >= 0],
-    ["Carga plataforma", M.cap + " kg", `${persons} pers. o ${M.cap - Math.min(persons, 2) * PERSON} kg de material con ${Math.min(persons, 2)}`, M.cap >= state.C],
     [M.type === "tijera" ? "Plataforma" : "Energía", M.type === "tijera" ? `${fmt(M.deck[0])}×${fmt(M.deck[1])} m` : { e: "Eléctrica", d: "Diésel", de: "Bienergía" }[M.energy], M.type === "tijera" ? `+${fmt(M.ext)} m de extensión` : M.terrain === "todo" ? "todo terreno" : "suelo firme", e.checks.ubicacion && e.checks.terreno],
   ].map(([l, v, s, ok]) => `<div class="kpi"><div class="l">${l}</div><div class="v ${ok ? "ok" : "bad"}">${v}</div><div class="s">${s}</div></div>`).join("");
   $("ficha").href = M.url;
@@ -737,7 +727,6 @@ function bindRange(id, key, out, unit = "m", d = 1) {
 bindRange("h", "H", "hv");
 bindRange("d", "D", "dv");
 bindRange("a", "A", "av", "m", 2);
-bindRange("c", "C", "cv", "kg");
 for (const id of ["o1on", "o2on", "o1h", "o1d", "o2h", "o2d"]) $(id).addEventListener("input", () => { $("o1").classList.toggle("off", !$("o1on").checked); $("o2").classList.toggle("off", !$("o2on").checked); state.auto = true; schedule(); });
 document.querySelectorAll("[data-group]").forEach((g) => g.addEventListener("click", (ev) => {
   const b = ev.target.closest(".chip");
