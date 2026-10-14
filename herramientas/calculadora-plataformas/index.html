@@ -90,6 +90,7 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 .type li.y b{background:var(--ok)}.type li.n b{background:var(--bad)}
 .type li.n{color:var(--bad)}
 .type .when{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+.lnk{font-size:12px;font-weight:700;color:var(--navy);text-decoration:none;margin-top:auto}.lnk:hover{color:var(--orange);text-decoration:underline}
 .rule{padding:0 18px 14px;font-size:12px;color:var(--muted)}
 /* flota */
 .fleet{margin-top:16px}
@@ -224,7 +225,8 @@ input[type=range]{width:100%;accent-color:var(--navy);margin:6px 0 0}
 const CAT = "https://grupomainsa.es/catalogo/mainsa-plataformas/";
 const PE = CAT + "plataformas-elevadoras/";
 const TIJ = PE + "plataformas-elevadoras-tijeras/";
-const sc = (id, name, H, W, deck, ext, cap, energy, terrain) => ({ id, type: "tijera", name, H, W, deck, ext, R: deck[0] / 2 + ext, cap, energy, terrain, base: "tijera", url: TIJ, est: true });
+const SLUG = { t6e: "tijeras-electricas/", t8e: "tijera-electrica-8m/", t10ec: "plataforma-tijera-compac-electrica-10m/", t10e: "tijera-electrica-10m/", t12ec: "plataforma-tijera-compac-electrica-12m/", t12e: "tijera-electrica-12m/", t12eb: "plataforma-tijera-electrica-12m-compact-12/", t14e: "tijera-electrica-14m/", t14ec: "plataforma-tijera-compac-electrica-14m/", t15e: "tijera-electrica-15m/", t18e: "tijera-electrica-18m/", t12d: "tijeras-diesel/", t12tt: "plataforma-tijera-todoterreno-diesel-12m/", t14d: "tijeras-diesel-15m/", t15tt: "plataforma-tijera-todoterreno-diesel-15m/", t15d: "plataforma-tijera-diesel-15m/", t18tt: "plataforma-tijera-todoterreno-diesel-18m/", t18d: "tijeras-diesel-18m/" };
+const sc = (id, name, H, W, deck, ext, cap, energy, terrain) => ({ id, type: "tijera", name, H, W, deck, ext, R: deck[0] / 2 + ext, cap, energy, terrain, base: "tijera", url: TIJ + SLUG[id], est: true });
 const FLEET = [
   // Tijeras (catálogo: alturas; dimensiones y carga típicas)
   sc("t6e", "Tijera eléctrica 6 m", 6, 0.76, [1.6, 0.7], 0.6, 230, "e", "firme"),
@@ -233,6 +235,7 @@ const FLEET = [
   sc("t10e", "Tijera eléctrica 10 m", 10, 1.17, [2.3, 1.1], 0.9, 450, "e", "firme"),
   sc("t12ec", "Tijera compacta eléctrica 12 m", 12, 0.81, [2.3, 0.8], 0.9, 230, "e", "firme"),
   sc("t12e", "Tijera eléctrica 12 m", 12, 1.17, [2.6, 1.1], 0.9, 320, "e", "firme"),
+  sc("t12eb", "Tijera eléctrica 12 m Compact 12", 12, 1.2, [2.6, 1.1], 0.9, 450, "e", "firme"),
   sc("t14ec", "Tijera compacta eléctrica 14 m", 14, 1.17, [2.6, 1.1], 0.9, 230, "e", "firme"),
   sc("t14e", "Tijera eléctrica 14 m", 14, 1.4, [2.6, 1.2], 1.0, 350, "e", "firme"),
   sc("t15e", "Tijera eléctrica 15 m", 15, 1.4, [2.6, 1.2], 1.0, 350, "e", "firme"),
@@ -276,11 +279,11 @@ const FLEET = [
   { id: "c24", type: "camion", boom: "art", base: "camion", name: "Camión plataforma articulado 24 m", H: 24, R: 13, W: 2.1, Wop: 2.6, cap: 200, energy: "d", terrain: "firme", url: CAT + "camiones-plataformas/camion-plataforma-articulado-diesel-24m" },
 ];
 const TYPES = {
-  tijera: { name: "Tijera", order: 1, when: "Trabajo en vertical sobre la máquina: la más económica, con más superficie y carga en plataforma. Solo alcanza en horizontal lo que da su extensión." },
-  mastil: { name: "Mástil vertical", order: 2, when: "Interiores estrechos y suelos delicados: muy compacta y ligera, con plumín corto para salvar algo de altura." },
-  articulada: { name: "Articulada", order: 3, when: "Pasar por encima de obstáculos y llegar a zonas de difícil acceso. Menos carga en cesta que una tijera." },
-  telescopica: { name: "Telescópica", order: 3, when: "Máximo alcance horizontal y altura con la máquina lejos del punto, sin obstáculos cerca de la base." },
-  camion: { name: "Camión plataforma", order: 4, when: "Varios puntos en vía pública: va por carretera sin góndola y monta rápido. Necesita firme y espacio para estabilizadores." },
+  tijera: { name: "Tijera", order: 1, url: PE + "plataformas-elevadoras-tijeras/", when: "Trabajo en vertical sobre la máquina: la más económica, con más superficie y carga en plataforma. Solo alcanza en horizontal lo que da su extensión." },
+  mastil: { name: "Mástil vertical", order: 2, url: PE + "plataformas-elevadoras-mastil-vertical/", when: "Interiores estrechos y suelos delicados: muy compacta y ligera, con plumín corto para salvar algo de altura." },
+  articulada: { name: "Articulada", order: 3, url: PE + "plataformas-elevadoras-articuladas/", when: "Pasar por encima de obstáculos y llegar a zonas de difícil acceso. Menos carga en cesta que una tijera." },
+  telescopica: { name: "Telescópica", order: 3, url: PE + "plataformas-elevadoras-telescopicas/", when: "Máximo alcance horizontal y altura con la máquina lejos del punto, sin obstáculos cerca de la base." },
+  camion: { name: "Camión plataforma", order: 4, url: CAT + "camiones-plataformas/", when: "Varios puntos en vía pública: va por carretera sin góndola y monta rápido. Necesita firme y espacio para estabilizadores." },
 };
 
 // ─── Modelos cinemáticos aproximados ─────────────────────────────────────────
@@ -510,7 +513,7 @@ function renderTypes(results, ideal) {
     const badge = win ? `<span class="badge ideal">IDEAL</span>` : ok.length ? `<span class="badge ok">${ok.length} válida${ok.length > 1 ? "s" : ""}</span>` : `<span class="badge bad">Ninguna</span>`;
     const head = ok.length ? `${best.M.name}<small>${best.why}</small>` : `Ninguna cumple<small>La más cercana: ${best.M.name} · ${best.why}</small>`;
     const list = CHECKS.map(([k, l]) => `<li class="${best.checks[k] ? "y" : "n"}"><b>${best.checks[k] ? "✓" : "✕"}</b>${l}</li>`).join("");
-    return `<button class="type ${win ? "win" : ""}" data-id="${best.M.id}"><h4>${TYPES[t].name}${badge}</h4><span class="m">${head}</span><ul>${list}</ul><span class="when">${TYPES[t].when}</span></button>`;
+    return `<div class="type ${win ? "win" : ""}" role="button" tabindex="0" data-id="${best.M.id}"><h4>${TYPES[t].name}${badge}</h4><span class="m">${head}</span><ul>${list}</ul><span class="when">${TYPES[t].when}</span><a class="lnk" href="${TYPES[t].url}" target="_blank" rel="noopener">Ver familia ${TYPES[t].name.toLowerCase()} (${all.length}) ↗</a></div>`;
   }).join("");
   $("winner").textContent = ideal ? `Recomendada: ${ideal.M.name}` : "Ninguna máquina cumple todos los requisitos";
   $("rule").innerHTML = `<b>Criterio de recomendación:</b> la solución más sencilla que cumple todo: tijera → mástil → brazo (articulada si hay obstáculos, telescópica si no) → camión. Con varios puntos en vía pública, el camión pasa primero (se mueve por carretera sin transporte en góndola). Dentro de cada tipo, la de menor altura y el ancho más estrecho.`;
@@ -533,7 +536,7 @@ function renderCards(results, nValid) {
   $("cards").innerHTML = order.map((e) => {
     const b = e.ideal ? `<span class="badge ideal">IDEAL</span>` : `<span class="badge ${e.status}">${e.label}</span>`;
     const extra = e.M.type === "tijera" ? `<span>Plat. <b>${fmt(e.M.deck[0])}×${fmt(e.M.deck[1])}</b></span>` : `<span>Alc. <b>${fmt(e.M.R)} m</b></span>`;
-    return `<button class="card ${e.status === "bad" ? "dim" : ""}" data-id="${e.M.id}" aria-pressed="${e.M.id === state.sel}"><span class="st">${b}</span>${thumbSvg(e)}<span class="k">${TYPES[e.M.type].name}${e.M.est ? " · estimado" : ""}</span><span class="t">${e.M.name}</span><span class="specs"><span>Alt. <b>${fmt(e.M.H, 0)} m</b></span>${extra}<span>Anch. <b>${fmt(e.M.Wop, 2)}</b></span><span><b>${e.M.cap}</b> kg</span></span></button>`;
+    return `<div class="card ${e.status === "bad" ? "dim" : ""}" role="button" tabindex="0" data-id="${e.M.id}" aria-pressed="${e.M.id === state.sel}"><span class="st">${b}</span>${thumbSvg(e)}<span class="k">${TYPES[e.M.type].name}${e.M.est ? " · estimado" : ""}</span><span class="t">${e.M.name}</span><span class="specs"><span>Alt. <b>${fmt(e.M.H, 0)} m</b></span>${extra}<span>Anch. <b>${fmt(e.M.Wop, 2)}</b></span><span><b>${e.M.cap}</b> kg</span></span><a class="lnk" href="${e.M.url}" target="_blank" rel="noopener">Ficha ↗</a></div>`;
   }).join("");
 }
 
@@ -745,7 +748,14 @@ document.querySelectorAll("[data-group]").forEach((g) => g.addEventListener("cli
   g.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === b));
   state[g.dataset.group] = b.dataset.v; state.auto = true; schedule();
 }));
-const pick = (ev) => { const c = ev.target.closest("[data-id]"); if (c) { state.sel = c.dataset.id; state.auto = false; recompute(); } };
+const pick = (ev) => {
+  if (ev.target.closest("a")) return;
+  if (ev.type === "keydown" && ev.key !== "Enter" && ev.key !== " ") return;
+  const c = ev.target.closest("[data-id]");
+  if (c) { ev.preventDefault(); state.sel = c.dataset.id; state.auto = false; recompute(); }
+};
+$("cards").addEventListener("keydown", pick);
+$("types").addEventListener("keydown", pick);
 $("cards").addEventListener("click", pick);
 $("types").addEventListener("click", pick);
 let dragging = false;
