@@ -1,4 +1,4 @@
-# Instrucciones: ficha técnica BYD ECB25i con el estilo de la ficha Combilift
+# Instrucciones: ficha técnica BYD ECB25i presentada por Combilift (licitación)
 
 Prompt de trabajo para Claude Code. Copiar en la carpeta de trabajo junto a los dos PDF y pedir: *"Sigue instrucciones/ficha-byd-ecb25i-estilo-combilift.md"*.
 
@@ -24,22 +24,23 @@ Las marcas rojas a mano (círculos rojos sobre "C-SERiES" y la celda "5.552 mm")
 
 ## 1. Regla de marca (obligatoria)
 
-Se copia el **estilo** de Combilift, **nunca su identidad**. La máquina es BYD y lo distribuye el grupo.
+**Contexto:** la oferta de la licitación la presenta **Combilift** e incluye la carretilla contrapesada **BYD ECB25i** como equipo suministrado. Grupo Mainsa prepara el documento por encargo de Combilift y **no aparece en él**.
 
-| Elemento en la ficha Combilift | En la ficha nueva |
+Requisito previo: autorización de Combilift para usar su marca, logo y datos de contacto en este documento. Si no consta, el documento se entrega como borrador para que Combilift lo valide.
+
+| Elemento | En la ficha nueva |
 |---|---|
-| Logo "COMBILIFT – LiFTING INNOVATION" (cabecera, pág. 1) | Logo **BYD Forklift** (fabricante), tomado de la pág. 1 o 10 del PDF BYD |
-| Título "C-SERiES / C3000E-C5000E" | **"ECB25i"** grande y **"Carretilla contrapesada eléctrica 4 ruedas"** debajo |
-| "combilift.com", dirección Monaghan, teléfono, email | Datos de contacto del **distribuidor (Grupo Mainsa)**. Si no se facilitan, dejar marcador visible `[CONTACTO DISTRIBUIDOR]` |
-| Bloque "Distribuido por:" | Se mantiene, con logo y datos del distribuidor (o el mismo marcador) |
-| Texto de patentes Combilift | **Eliminar** |
-| Aviso legal Combilift (desarrollo continuo) | **Aviso de BYD traducido** (ver §5) |
-| Logo "COMBiLIFT" en la máquina de la foto | No aplica: las fotos son de BYD y conservan su logo BYD |
+| Logo "COMBILIFT – LiFTING INNOVATION" (cabecera, pág. 1) | **Se mantiene** (Combilift es el ofertante). Usar el logo vectorial facilitado por Combilift; si no, recortarlo del PDF de referencia a máxima resolución |
+| Título | **"BYD ECB25i"** grande y **"Carretilla contrapesada eléctrica"** debajo. No se renombra el modelo ni se le da nombre de serie Combilift (nada de "C-SERiES") |
+| Logo BYD | Pequeño, junto al título o en la fila "Fabricante" (pág. 2), como marca del equipo |
+| "combilift.com", dirección, teléfono, email | **Se mantienen** los de Combilift. Si la licitación pide el contacto de la delegación española, se usa ese, facilitado por Combilift |
+| Bloque "Distribuido por:" | **"Suministrado por: Combilift"**, con logo y contacto |
+| Texto de patentes Combilift | **Eliminar**: las patentes son de la C-Series, no de esta máquina |
+| Fila "Fabricante" | **BYD** (fila 1.1 del PDF BYD). Obligatoria |
+| Aviso legal | Aviso de BYD traducido (ver §5) + "Ficha elaborada por Combilift a partir de la documentación técnica del fabricante" |
 | Marcado CE | Mantener la línea de BYD: "Las carretillas BYD cumplen los requisitos europeos de seguridad" |
 
-Si en algún punto el resultado pudiera confundirse con un documento oficial de Combilift, se para y se avisa.
-
----
+**Línea roja:** la ficha no puede dar a entender que Combilift fabrica la ECB25i. En una licitación pública, atribuir a un licitador un equipo de otro fabricante puede invalidar la oferta. Además, el marcado CE y la declaración de conformidad que se entregan con la máquina son de BYD y deben coincidir con la ficha.
 
 ## 2. Sistema visual a replicar (medido sobre el PDF Combilift)
 
@@ -61,19 +62,19 @@ Si en algún punto el resultado pudiera confundirse con un documento oficial de 
 ## 3. Estructura de páginas
 
 ### Página 1 – Portada (calco de la pág. 1 Combilift)
-- Arriba izquierda: **ECB25i** (Kanit Bold Italic verde) y debajo **Carretilla contrapesada eléctrica** (gris).
+- Arriba izquierda: **BYD ECB25i** (Kanit Bold Italic verde) y debajo **Carretilla contrapesada eléctrica** (gris).
 - Subtítulo en verde, 3–4 líneas, redactado a partir de la pág. 1 BYD: *"Carretilla elevadora eléctrica de 2.500 kg con batería BYD de hierro-fosfato (LFP): sin mantenimiento, carga rápida y 8 años de garantía de batería."*
-- Arriba derecha: logo BYD Forklift.
+- Arriba derecha: logo **Combilift** (ofertante). Logo BYD pequeño junto al título.
 - Centro: **foto principal de la ECB25i recoloreada** (ver §6). Origen: carretilla de la pág. 4 BYD (vista 3/4 lateral, la de mejor resolución).
 - Icono redondo de batería/eléctrico abajo a la derecha (como el de Combilift), en verde.
 - Fila de 3 fotos de aplicación: las 3 fotos de la pág. 10 BYD (almacén, exterior, palets).
-- Banda verde inferior con el web del distribuidor.
+- Banda verde inferior con "combilift.com".
 
 ### Página 2 – Ficha técnica (calco de la pág. 2 Combilift)
-- Título "ECB25i" (2 líneas, como "C-SERIES / C3000E-C5000E").
+- Título "BYD / ECB25i" (2 líneas, con la misma composición que "C-SERIES / C3000E-C5000E").
 - Zona de dibujos (mitad superior): **vista lateral** (izq.) y **vista en planta** (der.) de la ECB25i, redibujadas a partir de la pág. 6 BYD, con las llamadas de cotas numeradas del §4.1.
 - Tabla de especificaciones con las columnas **REF. | DESCRIPCIÓN | ECB25i** (una sola columna de modelo).
-- Columna derecha: **"Contrapesada eléctrica"** con la foto pequeña de la máquina (en lugar de "Multi-Direccional"), bloque **"Incluye:"** (§4.3), bloque **"Opcional:"** (§4.3, nuevo) y bloque **"Distribuido por:"**.
+- Columna derecha: **"Contrapesada eléctrica"** con la foto pequeña de la máquina (en lugar de "Multi-Direccional"), bloque **"Incluye:"** (§4.3), bloque **"Opcional:"** (§4.3, nuevo) y bloque **"Suministrado por:"** (Combilift).
 - Aviso legal en letra pequeña y banda verde inferior.
 
 ### Página 3 – Mástiles y capacidad (nueva; no existe en Combilift, mismo estilo)
@@ -148,8 +149,9 @@ Si se exige que la ficha tenga **2 páginas** como Combilift: se elimina la pág
 | U | Presión de trabajo para implementos | 16,8 MPa | 10.1 |
 | V | Nivel sonoro en el oído del operario | ≤ 70 dB(A) | 10.7 |
 | W | Puesto del operario | Sentado | 1.4 |
+| X | Fabricante | BYD | 1.1 |
 
-Fila **"Color estándar"** de Combilift: el PDF BYD no indica el color. **No se incluye.** Si las fotos se recolorean (§6), se añade al pie de la foto: *"Imagen ilustrativa. Color según configuración de pedido."*
+Fila **"Color estándar"** de Combilift: el PDF BYD no indica el color. Se incluye **solo si se confirma con BYD** que la máquina se suministra en el color de las fotos recoloreadas (§6); en ese caso, "Color: verde y negro (configuración Combilift)". Si no se confirma, se omite la fila y se pone al pie de la foto: *"Imagen ilustrativa. Color según configuración de pedido."*
 
 ### 4.3 Bloques "Incluye:" y "Opcional:" (de la pág. 10 BYD; solo lo que aplica a ECB25i)
 
@@ -188,6 +190,8 @@ Copiar las 4 familias: **2 etapas estándar** (3.000–5.000), **2 etapas FFL** 
 ---
 
 ## 6. Imágenes: recolorear la ECB25i "estilo Combilift"
+
+**Condición:** en una licitación la imagen forma parte de la oferta. Recolorear solo si el suministro será en ese color (confirmar con BYD; suelen ofrecer colores personalizados). Si no, se usan las fotos originales en azul o se mantiene el pie "imagen ilustrativa".
 
 **Objetivo:** el azul BYD de la carrocería pasa al verde Combilift; el negro (chasis, mástil, contrapeso) y el gris se mantienen. Así la máquina queda verde y negra como en la ficha de referencia.
 
@@ -258,13 +262,13 @@ Cualquier incidencia nueva se añade a `informe_revision.md` con página de orig
 
 - [ ] **Datos:** script que extrae el texto del PDF final y compara cada valor con `ecb25i.json` y este con el PDF BYD. 0 diferencias.
 - [ ] **Columna correcta:** 5 controles que distinguen ECB25i de ECB20i: capacidad 2.500 kg, peso 4.165 kg, carga por eje con carga 5.863 / 802, fuerza de tracción 12,5 / 9,5 kN, presión implementos 16,8 MPa.
-- [ ] **Marca:** búsqueda en el PDF final de "Combilift", "combilift.com", "Monaghan", "LiFTING", "C-SERiES", "patent": 0 resultados.
+- [ ] **Marca:** "BYD" aparece en el título y en la fila Fabricante; "C-SERiES" y el texto de patentes: 0 resultados; ninguna frase atribuye la fabricación a Combilift.
 - [ ] **Cotas:** cada número de los dibujos existe en la tabla y viceversa.
 - [ ] **Formato:** números en formato español; ninguna celda vacía; nada se sale de la página A4.
 - [ ] **Visual:** renderizar las 3 páginas a PNG y compararlas lado a lado con la ficha Combilift (márgenes, bandas, proporciones de tabla, jerarquía de títulos).
 - [ ] **Fotos:** sin halos ni restos de azul en la máquina recoloreada.
 
-Entregar el PDF, el `informe_revision.md` y la lista de puntos pendientes de confirmar con BYD o con el distribuidor.
+Entregar el PDF, el `informe_revision.md` y la lista de puntos pendientes de confirmar con BYD (mástil, color) y con Combilift (autorización, logo vectorial, contacto).
 
 ---
 
